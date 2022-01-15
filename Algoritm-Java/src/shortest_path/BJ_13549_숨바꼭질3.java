@@ -3,26 +3,54 @@ package shortest_path;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.PriorityQueue;
 
-public class BJ_13549_ìˆ¨ë°”ê¼­ì§ˆ3 {
-    //ë°±ì¤€
-    //ìˆ¨ë°”ê¼­ì§ˆ3(ê³¨ë“œ5)
+public class BJ_13549_¼û¹Ù²ÀÁú3 {
+    //¹éÁØ (°ñµå5)
 
-    //íì— ìƒˆë¡œìš´ ë…¸ë“œë¥¼ ë„£ì„ ë•Œ ë§ˆë‹¤
-    //ë…¸ë“œë“¤ì„ ë¹„ìš©ê¸°ì¤€ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•˜ê³ ,
-    //ê°€ì¥ ë¹„ìš©ì´ ì ì€ ë…¸ë“œë¥¼ êº¼ë‚´ë©° ìµœë‹¨ê±°ë¦¬ë¥¼ ê°±ì‹ í•œë‹¤.
+    //Å¥¿¡ »õ·Î¿î ³ëµå¸¦ ³ÖÀ» ¶§ ¸¶´Ù
+    //³ëµåµéÀ» ºñ¿ë±âÁØ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÏ°í,
+    //°¡Àå ºñ¿ëÀÌ ÀûÀº ³ëµå¸¦ ²¨³»¸ç ÃÖ´Ü°Å¸®¸¦ °»½ÅÇÑ´Ù.
     static int n, k;
-    static int[] load;
+    static int[] distance;
+    static int[] visited;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String[] str = br.readLine().split(" ");
+        //n : ¼öºóÀÌ°¡ ÀÖ´Â À§Ä¡
         n = Integer.parseInt(str[0]);
+        //k : µ¿»ıÀÌ ÀÖ´Â À§Ä¡
         k = Integer.parseInt(str[1]);
 
-        load = new int[100001];
+        distance = new int[100001];
+        Arrays.fill(distance, Integer.MAX_VALUE);
+        visited = new int[100001];
+
 
     }
 
+//    public static void dijkstra(int start){
+//        PriorityQueue<Node> pq = new PriorityQueue<>();
+//        //½ÃÀÛ ³ëµå·Î °¡±â À§ÇÑ ÃÖ´Ü °æ·Î¸¦ 0À¸·Î ¼³Á¤ÇÏ¿©, Å¥¿¡ »ğÀÔ
+//        pq.offer(new Node(start, 0));
+//        d[n] = 0;
+//        while(!pq.isEmpty()){
+//
+//        }
+//    }
+}
+
+class Node {
+    private int index;
+    private int distance;
+
+    public Node(int index, int distance){
+        this.index = index;
+        this.distance = distance;
+    }
 }

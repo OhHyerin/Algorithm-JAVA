@@ -11,68 +11,40 @@ public class BJ_9663_NQueen {
     //System.exit(0) -> 재귀가 너무 깊은 경우 스택 초기화
 
     static int n; //nxn체스판
-    static int[][] chess;
+    static int[] chess;
     static int count;
-    static int result=0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
 
-        chess = new int[n+1][n+1];
+        chess = new int[n];
 
-        for(int i=1;i<=n;i++) {
-            for (int j = 1; j <= n; j++) {
-                set_chess(i, j);
-            }
-        }
+        dfs(0);
 
-        System.out.println(result);
+        System.out.println(count);
 
     }
 
-    static void set_chess(int x, int y){
-//        count = 0;
-        for(int i=1;i<=n;i++){
-            for(int j=1;j<=n;j++){
-                chess[i][j] = 0;
+    static void dfs(int depth){
+        if(depth==n){
+            count++;
+            return;
+        }
+        for(int i=0;i<n;i++){
+            if(check(depth, i)){
+                chess[depth]=i;
+                dfs(depth+1);
             }
         }
-        for(int i=1;i<=n;i++){
-            chess[x][i] = 1;
-            chess[i][y] = 1;
-        }
-        for(int i=1;i<=n;i++){
-            if(x-i>=0 && y-i>=0){
-                chess[x-i][y-i] = 1;
-            }
-            if(x+i<=n && y+i<=n){
-                chess[x+i][y+i] = 1;
-            }
-            if(x-i>=0 && y+i<=n){
-                chess[x-i][y+i] = 1;
-            }
-            if(x+i<=n && y-i>=0){
-                chess[x+i][y-i] = 1;
-            }
-            //Math.abs(col[i]-col[row] == row-i //기울기로 대각선 풀기
-        }
-
-//        for(int i=1;i<=n;i++){
-//            for(int j=1;j<=n;j++){
-//                if(chess[i][j]==0){
-//                    count++;
-//                }
-//            }
-//        }
-//
-//        if(count>=n){
-//            result++;
-//        }
     }
 
-    static void dfs(){
-
+    static boolean check(int depth, int col){
+        for(int i=0;i<depth;i++){
+            if(chess[i]==col) return false;
+            if(Math.abs(i-depth)==Math.abs(chess[i]-col)) return false;
+        }
+        return true;
     }
 }
 

@@ -8,7 +8,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 
-public class A2178 {
+public class BJ_2178 {
 	//백준
 	//미로탐색
 	//BFS

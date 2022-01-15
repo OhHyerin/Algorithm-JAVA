@@ -3,17 +3,113 @@ package minimum_spanning_tree;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
-public class BJ_1922_ë„¤íŠ¸ì›Œí¬ì—°ê²° {
-    //ë°±ì¤€
-    // ë„¤íŠ¸ì›Œí¬ ì—°ê²°(ê³¨ë“œ4)
+public class BJ_1922_³×Æ®¿öÅ©¿¬°á {
+    //¹éÁØ (°ñµå4)
 
-    static int n, m;
+    static int n, m; //n:Á¤Á¡¼ö, m:°£¼±¼ö
+    static ArrayList<Edge> edges; //¸ğµç °£¼±À» ´ãÀ» ¸®½ºÆ®
+    static int result = 0; //ÃÖÁ¾ ºñ¿ëÀ» ´ãÀ» º¯¼ö
+    static int[] parent; //ºÎ¸ğ Å×ÀÌºí ÃÊ±âÈ­
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        n = Integer.parseInt(br.readLine());
-        m = Integer.parseInt(br.readLine());
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+//        n = Integer.parseInt(st.nextToken());
+//        m = Integer.parseInt(st.nextToken());
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        m = sc.nextInt();
 
+        parent = new int[100001];
+        //ºÎ¸ğ Å×ÀÌºí»ó¿¡¼­, ºÎ¸ğ¸¦ ÀÚ±â ÀÚ½ÅÀ¸·Î ÃÊ±âÈ­
+        for (int i = 1; i <= n; i++) {
+            parent[i] = i;
+        }
+        //°£¼± ´ãÀ» ¸®½ºÆ®
+        edges  = new ArrayList<>();
+
+        //¸ğµç °£¼±¿¡ ´ëÇÑ Á¤º¸¸¦ ÀÔ·Â ¹Ş±â
+        for (int i = 0; i < m; i++) {
+//            st = new StringTokenizer(br.readLine(), " ");
+//            int a = Integer.parseInt(st.nextToken());
+//            int b = Integer.parseInt(st.nextToken());
+//            int cost = Integer.parseInt(st.nextToken());
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int cost = sc.nextInt();
+            edges.add(new Edge(cost, a, b));
+        }
+
+        //°£¼±À» ºñ¿ë¼øÀ¸·Î Á¤·Ä
+        Collections.sort(edges);
+
+        //°£¼±À» ÇÏ³ª¾¿ È®ÀÎÇÏ¸ç
+        for (int i = 0; i < edges.size(); i++) {
+            int cost = edges.get(i).getDistance();
+            int a = edges.get(i).getNodeA();
+            int b = edges.get(i).getNodeB();
+            //»çÀÌÅ¬ÀÌ ¹ß»ıÇÏÁö ¾Ê´Â °æ¿ì¿¡¸¸ ÁıÇÕ¿¡ Æ÷ÇÔ
+            if (findParent(a) != findParent(b)) {
+                unionParent(a, b);
+                result += cost;
+            }
+        }
+        System.out.println(result);
+    }
+
+
+    //Æ¯Á¤ ¿ø¼Ò°¡ ¼ÓÇÑ ÁıÇÕÀ» Ã£±â
+    public static int findParent(int x){
+        //·çÆ®³ëµå°¡ ¾Æ´Ï¶ó¸é, ·çÆ® ³ëµå¸¦ Ã£À» ¶§±îÁö Àç±ÍÀûÀ¸·Î È£Ãâ
+        if(x==parent[x]) return x;
+        return parent[x] = findParent(parent[x]);
+    }
+
+    //µÎ ¿ø¼Ò°¡ ¼ÓÇÑ ÁıÇÕÀ» ÇÕÄ¡±â
+    public static void unionParent(int a, int b){
+        a = findParent(a);
+        b = findParent(b);
+        if(a<b) parent[b] = a;
+        else parent[a] = b;
+    }
+
+
+}
+
+class Edge implements Comparable<Edge>{
+    private int distance;
+    private int nodeA;
+    private int nodeB;
+
+    public Edge(int distance, int nodeA, int nodeB){
+        this.distance = distance;
+        this.nodeA = nodeA;
+        this.nodeB = nodeB;
+    }
+
+    public int getDistance() {
+        return this.distance;
+    }
+
+    public int getNodeA() {
+        return this.nodeA;
+    }
+
+    public int getNodeB() {
+        return this.nodeB;
+    }
+
+    @Override
+    public int compareTo(Edge o) {
+        //°Å¸®(ºñ¿ë)°¡ ÂªÀº °ÍÀÌ ³ôÀº ¿ì¼±¼øÀ§¸¦ °¡Áöµµ·Ï ¼³Á¤
+        if(this.distance<o.distance){
+            return -1;
+        }
+        return 1;
     }
 }

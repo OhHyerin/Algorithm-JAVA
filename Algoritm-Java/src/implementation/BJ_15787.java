@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class BJ_15787_기차가어둠을헤치고은하수를 {
+public class BJ_15787 {
     //백준
     //기차가 어둠을 헤치고 은하수를(실버2)
 

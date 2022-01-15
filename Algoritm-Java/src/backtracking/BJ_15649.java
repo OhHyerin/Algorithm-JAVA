@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class BJ_15649_N과M1 {
+public class BJ_15649 {
     //백준
     //N과 M(1)(실버3)
 

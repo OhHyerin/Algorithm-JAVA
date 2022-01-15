@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class BJ_14500_테트로미노 {
+public class BJ_14500 {
     //백준
     //테트로미노(골드5)
 
