@@ -10,6 +10,12 @@ import java.util.StringTokenizer;
 
 public class BJ_1922_네트워크연결 {
     //백준 (골드4)
+    //MST
+    //1. 그래프의 간선들을 가중치의 오름차순으로 정렬한다.
+    //2. 간선을 하나씩 확인하며 현재의 간선이 사이클을 발생시키는지 확인한다.
+    //   즉, 가장 낮은 가중치를 먼저 선택한다.
+    //   사이클을 형성하는 간선을 제외한다.
+    //3. 해당 간선을 현재의 MST집합에 추가한다.
 
     static int n, m; //n:정점수, m:간선수
     static ArrayList<Edge> edges; //모든 간선을 담을 리스트
@@ -79,37 +85,37 @@ public class BJ_1922_네트워크연결 {
     }
 
 
-}
+    static class Edge implements Comparable<Edge>{
+        private int distance;
+        private int nodeA;
+        private int nodeB;
 
-class Edge implements Comparable<Edge>{
-    private int distance;
-    private int nodeA;
-    private int nodeB;
-
-    public Edge(int distance, int nodeA, int nodeB){
-        this.distance = distance;
-        this.nodeA = nodeA;
-        this.nodeB = nodeB;
-    }
-
-    public int getDistance() {
-        return this.distance;
-    }
-
-    public int getNodeA() {
-        return this.nodeA;
-    }
-
-    public int getNodeB() {
-        return this.nodeB;
-    }
-
-    @Override
-    public int compareTo(Edge o) {
-        //거리(비용)가 짧은 것이 높은 우선순위를 가지도록 설정
-        if(this.distance<o.distance){
-            return -1;
+        public Edge(int distance, int nodeA, int nodeB){
+            this.distance = distance;
+            this.nodeA = nodeA;
+            this.nodeB = nodeB;
         }
-        return 1;
+
+        public int getDistance() {
+            return this.distance;
+        }
+
+        public int getNodeA() {
+            return this.nodeA;
+        }
+
+        public int getNodeB() {
+            return this.nodeB;
+        }
+
+        @Override
+        public int compareTo(Edge o) {
+            //거리(비용)가 짧은 것이 높은 우선순위를 가지도록 설정
+            if(this.distance<o.distance){
+                return -1;
+            }
+            return 1;
+        }
     }
+
 }
