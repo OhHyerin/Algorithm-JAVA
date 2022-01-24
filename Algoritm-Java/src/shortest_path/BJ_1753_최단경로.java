@@ -28,8 +28,8 @@ public class BJ_1753_최단경로 {
         for(int i=1;i<=v;i++){
             list[i] = new ArrayList<>();
         }
-
         Arrays.fill(distance, INF); //최댓값으로 초기화
+
         distance[k] = 0;
         //리스트에 그래프 정보를 초기화
         for(int i=0;i<e;i++){
@@ -41,7 +41,7 @@ public class BJ_1753_최단경로 {
             //start에서 end로 가는 거리
             list[start].add(new Node(end, distance));
         }
-       dijkstra();
+       dijkstra(k);
         for(int i=1;i<=v;i++){
             //dist가 초기값 그대로 INF라면 "INF"출력
             if(distance[i]==INF) {
@@ -54,34 +54,31 @@ public class BJ_1753_최단경로 {
 
     }
 
-    private static void dijkstra(){
-        PriorityQueue<Node> pq = new PriorityQueue<>();
-        pq.offer(new Node(start, 0));
+    private static void dijkstra(int index){
+        PriorityQueue<Node> queue = new PriorityQueue<>();
+        boolean [] check = new boolean[v+1];
+        queue.add(new Node(index, 0));
+        distance[index]=0;
 
-        while(!pq.isEmpty()){
-            Node node = pq.poll();
-            int vertex = node.index;
-            int weight = node.distance;
+        while(!queue.isEmpty()){
+            //큐가 빌 때까지
+            //노드 poll
+            Node curNode = queue.poll();
+            int cur = curNode.index;
 
-            if(distance[vertex]<weight){
+            if(check[cur]==true){
+                //방문한 적 있으면
                 continue;
             }
+            check[cur] = true;
 
-            for(Node n:list[vertex]){
-                if(distance[n.index]>distance[vertex]+n.distance){
-                    distance[n.index] = distance[vertex]+n.distance;
-                    pq.add(new Node(n.index, distance[n.index]));
+            for(Node node:list[cur]){
+                if(distance[node.index]>distance[cur]+node.distance){
+                    //현재 노드가 저장되어있는 값보다 작으면
+                    distance[node.index] = distance[cur]+node.distance;
+                    queue.add(new Node(node.index, distance[node.index]));
                 }
             }
-//            for(int i=0;i<list[vertex].size();i++){
-//                int vertex2 = list[vertex].get(i).index;
-//                int weight2 = list[vertex].get(i).distance + weight;
-//                if(distance[vertex2]>weight2){
-//                    //현재께 더 최단경로면 갱신
-//                    distance[vertex2] = weight2;
-//                    pq.add(new Node_1753(vertex2, weight2));
-//                }
-//            }
         }
     }
 

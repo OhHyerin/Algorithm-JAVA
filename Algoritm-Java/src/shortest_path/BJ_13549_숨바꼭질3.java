@@ -34,23 +34,19 @@ public class BJ_13549_숨바꼭질3 {
 
     }
 
-//    public static void dijkstra(int start){
-//        PriorityQueue<Node> pq = new PriorityQueue<>();
-//        //시작 노드로 가기 위한 최단 경로를 0으로 설정하여, 큐에 삽입
-//        pq.offer(new Node(start, 0));
-//        d[n] = 0;
-//        while(!pq.isEmpty()){
-//
-//        }
-//    }
-}
-
-class Node {
-    private int index;
-    private int distance;
-
-    public Node(int index, int distance){
-        this.index = index;
-        this.distance = distance;
+    static void dijkstra(int start){
+        PriorityQueue<Node> queue= new PriorityQueue<>();
     }
+
+
+    static class Node {
+        private int index;
+        private int distance;
+
+        public Node(int index, int distance){
+            this.index = index;
+            this.distance = distance;
+        }
+    }
+
 }
