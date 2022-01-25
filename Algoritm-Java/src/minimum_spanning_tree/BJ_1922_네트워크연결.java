@@ -3,10 +3,7 @@ package minimum_spanning_tree;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BJ_1922_네트워크연결 {
     //백준 (골드4)
@@ -74,6 +71,7 @@ public class BJ_1922_네트워크연결 {
         //루트노드가 아니라면, 루트 노드를 찾을 때까지 재귀적으로 호출
         if(x==parent[x]) return x;
         return parent[x] = findParent(parent[x]);
+
     }
 
     //두 원소가 속한 집합을 합치기

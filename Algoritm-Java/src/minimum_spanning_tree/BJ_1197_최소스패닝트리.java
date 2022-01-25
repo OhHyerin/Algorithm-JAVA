@@ -77,7 +77,6 @@ public class BJ_1197_최소스패닝트리 {
         //더 작은 숫자의 root노드로 두 점의 루트노드 동일하게 설정(합침)
         if(a<b) root[b] = a;
         else root[a] = b;
-
     }
 
 

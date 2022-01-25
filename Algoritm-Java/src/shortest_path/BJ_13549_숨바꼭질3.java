@@ -16,7 +16,6 @@ public class BJ_13549_숨바꼭질3 {
     //가장 비용이 적은 노드를 꺼내며 최단거리를 갱신한다.
     static int n, k;
     static int[] distance;
-    static int[] visited;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,27 +25,58 @@ public class BJ_13549_숨바꼭질3 {
         n = Integer.parseInt(str[0]);
         //k : 동생이 있는 위치
         k = Integer.parseInt(str[1]);
-
         distance = new int[100001];
-        Arrays.fill(distance, Integer.MAX_VALUE);
-        visited = new int[100001];
-
+        System.out.println(dijkstra(n, k));
 
     }
 
-    static void dijkstra(int start){
+    static int dijkstra(int start, int end){
         PriorityQueue<Node> queue= new PriorityQueue<>();
+        Arrays.fill(distance, 10000);
+
+        Node sNode = new Node();
+        //시작은 첫노드의 start와 0초
+        sNode.index = start;
+        sNode.sec = 0;
+        //첫 노드 큐에 추가
+        queue.offer(sNode);
+        distance[start] = 0; //거리0
+
+        while(!queue.isEmpty()){
+            //큐가 빌 때 까지
+            Node curNode = queue.poll();
+            if(distance[curNode.index]<curNode.sec)
+                continue; //현재 노드에 저장되어있는 시간(거리)가 더 작으면 패스
+
+            //deltas : 3가지 방향
+            int[] deltas = new int[]{curNode.index-1, curNode.index+1, curNode.index*2};
+
+            for(int i=0;i<deltas.length;i++){
+                if(deltas[i]<0 || deltas[i]>10000) continue; //범위 벗어나면 패스
+                Node nextNode = new Node();
+                nextNode.index = deltas[i];
+                nextNode.sec = (i==0 || i==1)? 1:0;
+                if(distance[nextNode.index]>distance[curNode.index]+ nextNode.sec){
+                    queue.offer(nextNode);
+                    distance[nextNode.index]=distance[curNode.index]+ nextNode.sec;
+                }
+            }
+
+        }
+        return distance[end];
     }
 
 
-    static class Node {
+    static class Node implements Comparable<Node> {
         private int index;
-        private int distance;
+        private int sec;
 
-        public Node(int index, int distance){
-            this.index = index;
-            this.distance = distance;
+
+        @Override
+        public int compareTo(Node o) {
+            return sec-o.sec;
         }
+
     }
 
 }
