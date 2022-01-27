@@ -3,10 +3,7 @@ package greedy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BJ_11000_강의실배정 {
     //백준 골드5
@@ -38,6 +35,17 @@ public class BJ_11000_강의실배정 {
                 return o1[0]-o2[0];
             }
         });
+
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        pq.offer(lecture.get(0)[1]);
+        for(int i=1;i<lecture.size();i++){
+            int cur = pq.peek();
+            if(cur<=lecture.get(i)[0]){
+                pq.poll();
+            }
+            pq.offer(lecture.get(i)[1]);
+        }
+        System.out.println(pq.size());
 
 
 
