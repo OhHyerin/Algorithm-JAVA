@@ -49,8 +49,8 @@ public class BJ_4256_트리 {
             //시작부터 끝까지
             if(inorder[i]==preorder[root]){
                 //중위순회를하면서 루트노드를만나면(부모노드)
-                System.out.print(" root : "+root);
-                System.out.println(" i : "+i);
+//                System.out.print(" root : "+root);
+//                System.out.println(" i : "+i);
                 postorder(root+1, start, i);
                 postorder(root+i-start+1, i+1, end);
                 sb.append(preorder[root]+" ");
