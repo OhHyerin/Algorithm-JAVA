@@ -7,6 +7,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 public class BJ_13549_숨바꼭질3 {
     //백준 (골드5)
@@ -15,61 +16,73 @@ public class BJ_13549_숨바꼭질3 {
     //노드들을 비용기준 오름차순으로 정렬하고,
     //가장 비용이 적은 노드를 꺼내며 최단거리를 갱신한다.
     static int n, k;
-    static int[] distance;
+    static int[] time;
+    static int MAX_POS = 100001;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        String[] str = br.readLine().split(" ");
+        StringTokenizer st = new StringTokenizer(br.readLine());
         //n : 수빈이가 있는 위치
-        n = Integer.parseInt(str[0]);
+        n = Integer.parseInt(st.nextToken());
         //k : 동생이 있는 위치
-        k = Integer.parseInt(str[1]);
-        distance = new int[100001];
-        System.out.println(dijkstra(n, k));
+        k = Integer.parseInt(st.nextToken());
+        time = new int[MAX_POS];
+        dijkstra();
+        System.out.println(time[k]);
 
     }
 
-    static int dijkstra(int start, int end){
+    static void dijkstra(){
         PriorityQueue<Node> queue= new PriorityQueue<>();
-        Arrays.fill(distance, 10000);
+        Arrays.fill(time, MAX_POS);
+        time[n] = 0;
 
-        Node sNode = new Node();
-        //시작은 첫노드의 start와 0초
-        sNode.index = start;
-        sNode.sec = 0;
-        //첫 노드 큐에 추가
-        queue.offer(sNode);
-        distance[start] = 0; //거리0
+        queue.add(new Node(n, 0)); //수빈이가 있는 위치로 초기화
 
-        while(!queue.isEmpty()){
+        while(!queue.isEmpty()) {
             //큐가 빌 때 까지
             Node curNode = queue.poll();
-            if(distance[curNode.index]<curNode.sec)
+            int pos = curNode.pos;
+            int sec = curNode.sec;
+            if (time[pos] < sec)
                 continue; //현재 노드에 저장되어있는 시간(거리)가 더 작으면 패스
 
-            //deltas : 3가지 방향
-            int[] deltas = new int[]{curNode.index-1, curNode.index+1, curNode.index*2};
-
-            for(int i=0;i<deltas.length;i++){
-                if(deltas[i]<0 || deltas[i]>10000) continue; //범위 벗어나면 패스
-                Node nextNode = new Node();
-                nextNode.index = deltas[i];
-                nextNode.sec = (i==0 || i==1)? 1:0;
-                if(distance[nextNode.index]>distance[curNode.index]+ nextNode.sec){
-                    queue.offer(nextNode);
-                    distance[nextNode.index]=distance[curNode.index]+ nextNode.sec;
-                }
+            //+1이동
+            int nextPos = pos + 1;
+            int nextSec = sec + 1;
+            if (nextPos < MAX_POS && time[nextPos] > nextSec) {
+                //더 짧은 시간으로 갱신
+                time[nextPos] = nextSec;
+                queue.add(new Node(nextPos, nextSec));
+            }
+            //-1이동
+            nextPos = pos - 1;
+            nextSec = sec + 1;
+            if (nextPos >= 0 && nextPos < MAX_POS && time[nextPos] > nextSec) {
+                time[nextPos] = nextSec;
+                queue.add(new Node(nextPos, nextSec));
             }
 
+            //2x로 이동
+            nextPos = pos * 2;
+            nextSec = sec;
+            if (nextPos < MAX_POS && time[nextPos] > nextSec) {
+                time[nextPos] = nextSec;
+                queue.add(new Node(nextPos, nextSec));
+            }
         }
-        return distance[end];
+
     }
 
 
     static class Node implements Comparable<Node> {
-        private int index;
+        private int pos;
         private int sec;
+
+        public Node(int pos, int sec){
+            this.pos = pos;
+            this.sec = sec;
+        }
 
 
         @Override

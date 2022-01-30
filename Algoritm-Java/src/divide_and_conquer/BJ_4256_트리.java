@@ -47,7 +47,7 @@ public class BJ_4256_트리 {
     static void postorder(int root, int start, int end){
         for(int i=start;i<end;i++){
             //시작부터 끝까지
-            if(inorder[i]==preorder[root]){
+            if(preorder[root]==inorder[i]){
                 //중위순회를하면서 루트노드를만나면(부모노드)
 //                System.out.print(" root : "+root);
 //                System.out.println(" i : "+i);
