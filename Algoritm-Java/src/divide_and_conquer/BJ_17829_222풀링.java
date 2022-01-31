@@ -11,6 +11,7 @@ public class BJ_17829_222Ç®¸µ {
 
     static int n;
     static int[][] grid;
+    static int trash;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
