@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_6987_월드컵 {
+    //백준 골드5
+    //예제 다 맞는데 틀렸다고 나옴
 
     static int[][] worldcup = new int[4][18];
     static int[] result = new int[4];
