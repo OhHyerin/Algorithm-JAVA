@@ -33,13 +33,6 @@ public class BOJ_1474_밑줄 {
 //                result[j] = (st.nextToken()).charAt(0);
             }
         //-------------입력완료-----------------
-//        list.sort(new Comparator<String>() {
-//            @Override
-//            public int compare(String o1, String o2) {
-//                return o1.compareTo(o2);
-//            }
-//        });
-        //---------정렬했는데 필요없는거같음----------
         int str_length = 0;
         for(int i=0;i<list.size();i++){
 //            System.out.print(list.get(i)+" ");
