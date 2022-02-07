@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class BOJ_6987_월드컵 {
     //백준 골드5
     //예제 다 맞는데 틀렸다고 나옴
+    //숫자로만 비교하는게 아닌 것 같음
 
     static int[][] worldcup = new int[4][18];
     static int[] result = new int[4];
