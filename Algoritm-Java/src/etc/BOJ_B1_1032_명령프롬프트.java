@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class BOJ_브1_1032_명령프롬프트 {
+public class BOJ_B1_1032_명령프롬프트 {
 
 
     static char[][] input;
