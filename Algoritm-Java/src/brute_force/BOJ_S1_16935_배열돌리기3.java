@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_S1_16935_배열돌리기3 {
     //백준 실버1
+    //완전탐색
 
     static int n, m, r;
     static int[][] grid;
