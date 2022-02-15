@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class BOJ_B2_2309_일곱난쟁이 {
     //백준 브론즈2
+    //백준 브론즈2 3040 백설공주와 일곱난쟁이와 문제 똑같음
     //IM 대비
 
     static int[] height = new int[9];

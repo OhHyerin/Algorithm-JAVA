@@ -31,52 +31,42 @@ public class BOJ_G5_16938_캠프준비 {
         //---------- 입력 완료--------------------
         Arrays.sort(level);
 //        combination(N, new int[N] , 0);
-        com(0, 0, N);
+//        com(0, 0, N);
+        subSet(0, new boolean[N]);
         System.out.println(answer);
 
     }
-    private static void combination(int toChoose, int[] choosed, int startIdx){
+
+    private static void subSet(int cnt, boolean[] checked){
         //base part
-        if(toChoose==0){
-            System.out.println(Arrays.toString(choosed));
-            System.out.println("toChoose==0");
+        if(cnt==N){
+            int count = 0;
             int max = Integer.MIN_VALUE;
             int min = Integer.MAX_VALUE;
             int sum = 0;
-            for(int i=0;i<choosed.length;i++){
-                max = Math.max(max, choosed[i]);
-                min = Math.min(min, choosed[i]);
-                sum += choosed[i];
+            for(int i=0;i<checked.length;i++){
+                if(checked[i]){
+//                    System.out.print(level[i]+" ");
+                    max = Math.max(max, level[i]);
+                    min = Math.min(min, level[i]);
+                    sum+=level[i];
+                    count++;
+                }
             }
-            if(choosed.length>=2){ //2문제 이상
-                System.out.println("2문제이상");
+            if(count>=2){ //2문제 이상
                 if(max-min>=X) {//가장 어려운문제와 쉬운문제 난이도차이가 X보다 크거나같음
-                    System.out.println("난이도차이");
                     if(sum>=L && sum<=R){ //난이도 합이 L~R사이
-                        System.out.println("난이도 합");
+//                        System.out.println("cnt : "+count+", max : "+max+", min : "+min);
                         answer++;
                     }
                 }
             }
-
             return;
         }
         //inductive part
-        for(int i=startIdx;i<level.length;i++){
-            choosed[choosed.length-toChoose] = level[i];
-            combination(toChoose-1, choosed, i+1);
-        }
-    }
-    static int[] numbers = new int[N];
-
-    private static void com(int cnt, int start, int num){
-        if(cnt==num){
-            System.out.println(Arrays.toString(numbers));
-            return;
-        }
-        for(int i=start;i<level.length;i++){
-            numbers[cnt] = level[i];
-            com(cnt+1, start+1, num);
-        }
+        checked[cnt] = true;
+        subSet(cnt+1, checked);
+        checked[cnt] = false;
+        subSet(cnt+1, checked);
     }
 }
