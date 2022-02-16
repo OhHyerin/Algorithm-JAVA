@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class BOJ_9663_NQueen {
+public class BOJ_G5_9663_NQueen {
     //백준
     //N-Queen(골드5)
     //1차원 배열로 풀어보기
