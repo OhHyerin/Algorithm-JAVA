@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class SWEA_모의SW_4012_요리사 {
+    //조합
 
     static int N;
     static int [][] food;  //시너지 배열
@@ -29,51 +30,56 @@ public class SWEA_모의SW_4012_요리사 {
             }
             //-------------입력 완료-----------
 
-            combination(0,0);
+            combination(N/2,new boolean[N/2], 0);
             sb.append("#").append(t).append(" ").append(min).append("\n");
 
         } //t
         System.out.println(sb);
     }
 
-    private static void combination(int cnt, int start){
-        //base part
-        if(cnt==N/2){
-            int[] a = new int[N/2];
-            int[] b = new int[N/2];
-            int indexA = 0;
-            int indexB = 0;
-
-            for(int i=0;i<N;i++){
-                if(isSelected[i]){
-                    a[indexA++] = i;
-                }else{
-                    b[indexB++] = i;
+    private static void combination(int toChoose, boolean[] choosed, int startIdx){
+        if(toChoose==0){
+            int sum = 0;
+            for(int i=0; i<N;i++){
+                for(int j=0;j<N;j++){
+                    if(choosed[i]==choosed[j]){
+                        //선택된 재료의 조합
+                        if(choosed[i]){
+                            sum += food[i][j];
+                        }
+                        //비선택된 재료의 조합
+                        else{
+                            sum += food[i][j];
+                        }
+                    }
                 }
             }
-
-            int tastyA = 0;
-            int tastyB = 0;
-
-            for(int i=0;i<a.length;i++){
-                for(int j=0;j<a.length;j++){
-                    tastyA += food[a[i]][a[j]]; //각 재료의 시너지 더하기
-                    tastyB += food[b[i]][b[j]];
-                }
-            }
-            min = Math.min(min,Math.abs(tastyA-tastyB));
-
-
+            min = Math.min(min, Math.abs(sum));
 
             return;
         }
-
-        //inductive part
-        for(int i = start; i<N;i++){
-            isSelected[i] = true;
-            combination(cnt+1, i+1);
-            isSelected[i] = false;
+        for(int i=startIdx; i<N;i++){
+            choosed[i] = true;
+            combination(toChoose-1, choosed, i+1);
+            //원랜 덮어씌워서 원복시키지 않아도 되지만 이 경우엔 해야함
+            choosed[i] = false;
         }
     }
+
+
+
+
+    private static int getSatis(int [] comb){
+        int satis = 0;
+        for(int i=0;i<comb.length;i++){
+            for(int j=0;j<comb.length;j++){
+                satis += food[comb[i]][comb[i]];
+            }
+        }
+        return satis;
+    }
+
+
+
 
 }
