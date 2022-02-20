@@ -1,4 +1,4 @@
-package divide_and_conquer;
+package Tree;
 
 import java.io.BufferedReader;
 import java.io.IOException;

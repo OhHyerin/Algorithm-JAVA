@@ -45,7 +45,8 @@ public class BOJ_G4_1987_알파벳 {
             return;
         }
 
-        visited[map[r][c]-65] = true;  //해당 알파벳 방문처리(아스키코드 대문자 65~)
+        visited[map[r][c]-'A'] = true;  //해당 알파벳 방문처리(아스키코드 대문자 65~)
+
         for(int d=0;d<4;d++){ //사방탐색
             int nextR = r+dr[d];
             int nextC = c+dc[d];

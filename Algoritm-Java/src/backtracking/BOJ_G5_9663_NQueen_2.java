@@ -11,7 +11,6 @@ public class BOJ_G5_9663_NQueen_2 {
 
     //row 한 줄에 하나의 퀸만 들어갈 수 있음.
 
-
     static int n;
     static int[] chess;
     static int cnt;
@@ -57,5 +56,26 @@ public class BOJ_G5_9663_NQueen_2 {
         }
         return true;
     }
+    /*
+    static void setQueen(int rowNo) { // rowNo -> 퀸을 두어야하는 현재 행
+
+		// 가지치기
+		if(!isAvailable(rowNo-1)) {
+			return;
+		}
+
+		// 기저조건 : 퀸을 모두 놓았다면
+		if(rowNo > N) {
+			answer++;
+			return;
+		}
+
+		// 1열부터 n열까지 퀸을 놓는 시도
+		for(int i=1; i<=N; i++) {
+			col[rowNo] = i;
+			setQueen(rowNo+1);
+		}
+	}
+     */
 
 }
