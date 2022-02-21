@@ -9,9 +9,9 @@
     <file url="file://$PROJECT_DIR$/Algoritm-Java/src/dynamicprogramming/BOJ_2579_계단오르기.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Algoritm-Java/src/dynamicprogramming/BOJ_2748_피보나치수2.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Algoritm-Java/src/dynamicprogramming/BOJ_9095_123더하기.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/Algoritm-Java/src/graphtraversal/BOJ_1260_DFS와BFS.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Algoritm-Java/src/graphtraversal/BOJ_2178.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Algoritm-Java/src/graphtraversal/BOJ_2178_미로탐색풀이2.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Algoritm-Java/src/graphtraversal/BOJ_S2_1260_DFS와BFS.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Algoritm-Java/src/greedy/BOJ_14916_거스름돈.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Algoritm-Java/src/greedy/BOJ_14916_거스름돈풀이2.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Algoritm-Java/src/greedy/BOJ_1758_알바생강호.java" charset="x-windows-949" />

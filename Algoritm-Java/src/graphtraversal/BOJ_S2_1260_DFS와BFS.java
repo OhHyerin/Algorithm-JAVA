@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class BOJ_1260_DFS와BFS {
+public class BOJ_S2_1260_DFS와BFS {
 	//백준
 	//DFS와 BFS
 	
@@ -38,8 +38,6 @@ public class BOJ_1260_DFS와BFS {
 		
 		Arrays.fill(visited, false); //방문배열 초기화
 		bfs(v); //v부터 너비우선탐색
-		
-		
 	}
 	
 	//재귀형식으로 구현한 DFS
