@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ_4256_트리 {
+public class BOJ_G3_4256_트리 {
     //백준 골드3
     //이진트리
 
