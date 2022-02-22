@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class BOJ_실2_18222_투에모스문자열 {
+public class BOJ_S2_18222_투에모스문자열 {
     //이분탐색
     //ArrayList<Integer>로 푸니까 메모리초과남
     //아직? 이해가? 잘 ? 안됨?????????

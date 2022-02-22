@@ -45,15 +45,19 @@ public class BOJ_G5_1068_트리 {
         //---------------------입력 완료-------------------
         remove(r);  //전체 조회 후 r 노드부터 leaf노드까지 삭제
 
+        //루트노드가 삭제할 노드일 때 1이 아닌 0이 나와야 함
         if(r==root){
             System.out.println(0);
         } else{
             countLeaf();
             System.out.println(count);
         }
+//        countLeaf();
+//        System.out.println(count);
 
     }
     static void remove(int node){
+        //tree 조회
         if(tree[node].size()>0){
             //리프노드가 아니면
             int size = tree[node].size();
@@ -63,7 +67,7 @@ public class BOJ_G5_1068_트리 {
             }
         }
 
-        //삭제
+        //tree에서 삭제
         for(int i=0;i<n;i++) {
             if (tree[i].contains(node)) {
                 //리스트 안에 node가 포함되어있으면

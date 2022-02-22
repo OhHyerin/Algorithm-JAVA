@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 public class BOJ_G4_3584_가장가까운공통조상 {
     //백준 골드4
     //완전이진트리 X
+    //다시풀어보기
 
     //루트노드가 정해져 있지 않기 때문에 아래에서 위로 올라가면서 루트노드를 찾아야 함
     //두 정점의 높이를 같게 하고 하나씩 올라가면서 같은 정점이 나올때까지 반복복
@@ -106,5 +107,4 @@ public class BOJ_G4_3584_가장가까운공통조상 {
             findB = parent[findB];
         }
     }
-
 }
