@@ -11,9 +11,11 @@ import java.util.StringTokenizer;
 public class BOJ_G5_1068_트리 {
     //백준 골드5
     //리프노드의 개수 찾기 (부모노드를 지우면 자식노드 모두 remove)
+    //다시풀기 이해안감
 
     static int n; //n:노드의 개수
-    static ArrayList<Integer>[] tree; //각 parent로부터 연결된 자식노드
+    static ArrayList<Integer>[] tree; //각 parent로부터 연결된 자식노드 (인접리스트 배열)
+    //인접리스트니까 리스트의 크기가 0이면 리프노드임
 //    static int[] leaf;  //leaf 노드 저장할 배열
     //leaf노드를 따로 저장할 필요는 없음
     static int r; //r:지울 노드의 번호
@@ -28,7 +30,7 @@ public class BOJ_G5_1068_트리 {
 
         //tree setting
         for(int i=0;i<n;i++) {
-            tree[i] = new ArrayList<>();  //노드마다 list선언
+            tree[i] = new ArrayList<>();  //노드마다 인접리스트 생성
         }
 
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -57,13 +59,13 @@ public class BOJ_G5_1068_트리 {
 
     }
     static void remove(int node){
-        //tree 조회
+        //tree 조회  -> DFS
         if(tree[node].size()>0){
             //리프노드가 아니면
             int size = tree[node].size();
             while(size>0){
                 //leaf노드까지 반복
-                remove(tree[node].get(--size)); //size를 감소하면서 leaf노드 찾기
+                remove(tree[node].get(--size)); //size를 감소하면서 leaf노드 찾기 (size==0이면 리프노드)
             }
         }
 
