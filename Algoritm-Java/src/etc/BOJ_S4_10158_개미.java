@@ -7,6 +7,8 @@ import java.util.StringTokenizer;
 
 public class BOJ_S4_10158_개미 {
     //IM대비
+    //시간이 0.15초라 O(1)의 시간복잡도가 되도록 해야함
+    //while문으로도 다시 풀어보기
 
 
     static int W, H;

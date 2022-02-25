@@ -28,6 +28,28 @@ public class BOJ_B2_13300_방배정 {
             room[y][s]++;  //방 마다 인원 배정
        }
 
+//        for(int i=1;i<7;i++){
+//            for(int j=0;j<2;j++){
+//                System.out.print(room[i][j]+" ");
+//            }
+//            System.out.println();
+//        }
+        int count = 0;
+        for(int i=1;i<7;i++){
+            for(int j=0;j<2;j++){
+                if(room[i][j]==0){
+                    continue;
+                } else {
+                    count = count+(room[i][j]/K);
+                    if(room[i][j]%K!=0){
+                        count++;
+                    }
+                }
+            }
+        }
+
+        System.out.println(count);
+
 
 
 
