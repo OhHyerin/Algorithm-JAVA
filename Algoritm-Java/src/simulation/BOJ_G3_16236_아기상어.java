@@ -1,4 +1,4 @@
-package graphtraversal;
+package simulation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
