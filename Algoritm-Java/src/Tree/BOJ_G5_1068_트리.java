@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 public class BOJ_G5_1068_트리 {
     //백준 골드5
     //리프노드의 개수 찾기 (부모노드를 지우면 자식노드 모두 remove)
-    //다시풀기 이해안감
+    //다시풀기
 
     static int n; //n:노드의 개수
     static ArrayList<Integer>[] tree; //각 parent로부터 연결된 자식노드 (인접리스트 배열)
