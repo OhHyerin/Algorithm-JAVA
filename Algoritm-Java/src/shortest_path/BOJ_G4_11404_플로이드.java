@@ -13,7 +13,7 @@ public class BOJ_G4_11404_플로이드 {
 
     static int V, E;
     static int[][] adjMatrix;
-    static final int INF = 100000000;  //Integer.MAX_VALUE로하면 범위 넘어가서 다른 값 출력됨 //2147483647
+    static final int INF = 100_000_000;  //Integer.MAX_VALUE로하면 범위 넘어가서 다른 값 출력됨 //2147483647
     //보통 INF는 무슨 기준으로 잡는건지????????
 
     public static void main(String[] args) throws IOException {
