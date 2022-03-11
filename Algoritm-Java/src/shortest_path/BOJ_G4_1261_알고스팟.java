@@ -11,6 +11,8 @@ public class BOJ_G4_1261_알고스팟 {
     //백준 골드4
     //스터디 공통문제
 
+    //다익스트라 (bfs+dp)
+
     static int R, C;
     static int[][] map;
     static int[] dr = {-1, 1, 0, 0};
@@ -43,12 +45,12 @@ public class BOJ_G4_1261_알고스팟 {
         //----------------입력완료-----------------
 
 
-        bfs();
+        dijkstra();
         System.out.println(count[R-1][C-1]);
 
     }
 
-    private static void bfs(){
+    private static void dijkstra(){
         Queue<Pos> queue = new LinkedList<>();
         for(int i=0;i<R;i++){
             for(int j=0;j<C;j++){
