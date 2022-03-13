@@ -19,7 +19,10 @@ public class BOJ_G4_1976_여행가자 {
         N = Integer.parseInt(br.readLine());
         M = Integer.parseInt(br.readLine());
 
+        for(int i=0;i<N;i++){
+            st = new StringTokenizer(br.readLine());
 
+        }
 
 
     }
