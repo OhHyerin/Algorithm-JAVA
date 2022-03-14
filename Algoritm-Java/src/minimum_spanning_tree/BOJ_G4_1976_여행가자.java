@@ -10,6 +10,7 @@ public class BOJ_G4_1976_여행가자 {
     //스터디 MST
 
     static int N, M;
+    static int remove;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
