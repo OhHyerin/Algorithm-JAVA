@@ -9,7 +9,7 @@ public class BOJ_G4_1976_여행가자 {
     //백준 골드4
     //스터디 MST
 
-    //경로의 최단경로나 최소개수를 물어보는 것이 아니기때문에
+    //경로의 최단경로나 최소개수를 물어보는 것이 아니기때문에(크루스칼까지 할 필요 X)
     //다른 과정 없이 union-find를 통해 같은 경로에 있는지만 확인 후 true, false 반환
 
     //루트노드가 같은 루트노드라면 같은 경로에 있다고 판단할 수 있음
@@ -66,8 +66,6 @@ public class BOJ_G4_1976_여행가자 {
 
         System.out.println(sb);
 
-
-
     }
 
     private static void union(int a, int b){
@@ -87,10 +85,6 @@ public class BOJ_G4_1976_여행가자 {
         if(x==root[x]) return x;  //자기 자신이 루트노드라면 자신 반환
         return root[x] = find(root[x]);  //root노드 찾을 때 까지
     }
-
-
-
-
 
 
     static class Node implements Comparable<Node>{
