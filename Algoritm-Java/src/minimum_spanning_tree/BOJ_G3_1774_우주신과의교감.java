@@ -22,6 +22,8 @@ public class BOJ_G3_1774_우주신과의교감 {
 
     //이미 연결되어있는 노드먼저 연결하고 -> 우주신들의 좌표대로 크루스칼 알고리즘으로 MST구현
 
+    //좌표를 처리할 클래스를 따로 만들어야해서 처음 구상이 어려웠음
+
     static int N, M;  //N:정점개수, M:간선개수
     static int[] root;  //노드의 root노드 배열
     static ArrayList<Node> list;  //간선 관리
