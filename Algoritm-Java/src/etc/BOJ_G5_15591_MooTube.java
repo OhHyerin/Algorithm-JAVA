@@ -10,7 +10,6 @@ public class BOJ_G5_15591_MooTube {
     //스터디 - 문제집 코테광탈
 
     //문제를 이해하는데 오래걸림
-    //MST를 구축하고
     //주어진 k,v -> v에서 시작해서 간선비용이 k보다 크면 진출(count++)
 
     //union-find로 구축하려했다가
@@ -33,7 +32,7 @@ public class BOJ_G5_15591_MooTube {
             list[i] = new ArrayList<>();
         }
 
-        question = new int[Q][2];
+        question = new int[Q][2];  //k, v를 저장할 question 배열
 
 
         for (int i = 0; i < N - 1; i++) {
@@ -64,26 +63,32 @@ public class BOJ_G5_15591_MooTube {
     }
 
     private static int bfs(int k, int v) {
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] visited = new boolean[N + 1];
+        Queue<Video> queue = new LinkedList<>();
+        boolean[] visited = new boolean[N+1];
+        int min;
         int count = 0;
 
-        queue.add(v);  //시작점 v
-        visited[v] = true;
+        queue.add(new Video(v, Integer.MAX_VALUE));
 
-        while (!queue.isEmpty()) {
-            int cur = queue.poll();
-
-
-            for(Video next : list[cur]){
-                if(!visited[next.to] && next.distance<k){
-                    visited[next.to] = true;
-                    count++;
-                    queue.add(next.to);
+        while(!queue.isEmpty()){
+            Video cur = queue.poll();  //현재 비디오
+            visited[cur.to] = true;    //방문처리
+            for(Video next : list[cur.to]){ //현재 비디오의 모든 경로
+                if(!visited[next.to]){
+                    min = Math.min(cur.distance,next.distance); //둘 연관도 중 최솟값
+                    if(min>=k){  //그 최솟값이 k보다 크면 이동
+                        queue.add(new Video(next.to, min));
+                        count++;
+                        visited[next.to] = true;
+                    }
                 }
             }
+
         }
+
         return count;
+
+
     }
 
 
