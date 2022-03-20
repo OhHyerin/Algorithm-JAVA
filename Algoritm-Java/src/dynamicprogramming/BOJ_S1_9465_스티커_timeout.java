@@ -10,6 +10,9 @@ import java.util.StringTokenizer;
 public class BOJ_S1_9465_스티커_timeout {
     //백준 실버1
     //스터디 - DP
+    //우선순위 큰 것부터 선택하고 주변 지우기
+    //isSelect배열이 0이 아닌 수로 꽉 차면 break
+    //isSelect배열이 1이면 지워짐, 2면 선택됨
 
     static int N;
     static int [][] stickers;
