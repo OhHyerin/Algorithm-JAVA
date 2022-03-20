@@ -9,6 +9,11 @@ public class BOJ_S1_9465_스티커 {
     //백준 실버1
     //스터디 - DP
 
+    //dp배열로 현재 위치까지 계산될 수 있는 값 중 가장 큰 값을 저장
+    //현재 위치 기준으로 [row-1][col-1]과 [row-1][col-2]의 누적값 중 큰 값을 [row][col]에 저장
+    //N위치까지 다 돌았으면 마지막에
+    //dp[0][N]과 dp[1][N]중 큰 값을 답으로 채택
+
     static int N;
     static int [][] stickers;
     static int [][] dp;
