@@ -35,7 +35,6 @@ public class BOJ_G2_12100_2048Easy {
             }
             System.out.println();
         }
-
     }
 
     private static void leftMove(){
@@ -49,7 +48,6 @@ public class BOJ_G2_12100_2048Easy {
                         }
                         map[i][c] = map[i][c+1];
                     }
-
                 }
             }
         }

@@ -60,6 +60,7 @@ public class BOJ_G5_15591_MooTube {
 
         System.out.println(sb);
 
+
     }
 
     private static int bfs(int k, int v) {
@@ -87,7 +88,6 @@ public class BOJ_G5_15591_MooTube {
         }
 
         return count;
-
 
     }
 
