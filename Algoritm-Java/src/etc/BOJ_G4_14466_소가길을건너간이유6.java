@@ -69,6 +69,7 @@ public class BOJ_G4_14466_소가길을건너간이유6 {
     }
 
     static void bfs(Pos a, Pos b){
+        //Queue를 전역변수로 바꿔보기
 
 
         while(!queue.isEmpty()){
