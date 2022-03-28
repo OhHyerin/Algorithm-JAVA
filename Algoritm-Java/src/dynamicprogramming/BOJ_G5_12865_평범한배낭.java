@@ -13,9 +13,8 @@ public class BOJ_G5_12865_평범한배낭 {
 
     static int N;  //N : 물품의 수
     static int K;  //K : 준서가 버틸 수 있는 무게
-    static int[][] bags;
-    static boolean[] selected;
-    static int maxValue = Integer.MIN_VALUE;
+    static int[] weight;
+    static int[] value;
     static int[][] dp;
 
     public static void main(String[] args) throws IOException {
@@ -24,46 +23,34 @@ public class BOJ_G5_12865_평범한배낭 {
 
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        bags = new int[N][2];
-        selected = new boolean[N];
-        dp = new int[N][K];
 
-        for(int i=0;i<N;i++){
+        weight = new int[N+1];
+        value = new int[N+1];
+
+        dp = new int[N+1][K+1];
+
+        for(int i=1;i<=N;i++){
             st = new StringTokenizer(br.readLine());
             int w = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
-            bags[i][0] = w;
-            bags[i][1] = v;
+            weight[i] = w;
+            value[i] = v;
         }
 
-        subSet(0, selected , 0);
-
-        System.out.println(maxValue);
-    }
-
-    private static void subSet(int cnt,boolean[] selected, int weightSum){
-        //base part
-        if(cnt==N){
-            int sum = 0;
-            int value = 0;
-            for (int i = 0; i < N; i++) {
-                if(selected[i]){
-                    sum += bags[i][0];
-                    value += bags[i][1];
+        for(int i=1;i<=N;i++){
+            for(int j=1;j<=K;j++){
+                //현재 weight를 가진 물건을 가방에 넣을 수 있는 경우(wegith가 K보다 작은 경우)
+                if(weight[i]<=j){
+                    //
+                    dp[i][j] = Math.max(value[i]+dp[i-1][j-weight[i]], dp[i-1][j]);
+                }else{
+                    //현재 weight를 가진 물건을 가방에 넣을 수 없는 경우
+                    dp[i][j] = dp[i-1][j];
                 }
             }
-            if(sum<=K){
-                maxValue = Math.max(maxValue, value);
-            }
-
-            return;
         }
 
 
-        //inductive part
-        selected[cnt] = true;
-        subSet(cnt+1, selected, weightSum+=bags[cnt][0]);
-        selected[cnt] = false;
-        subSet(cnt+1, selected, weightSum);
+        System.out.println(dp[N][K]);
     }
 }
