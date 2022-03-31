@@ -88,7 +88,7 @@ public class BOJ_G4_17135_캐슬디펜스 {
             if(enemies[i].dist<=D ){
                 int dr = enemies[i].r;
                 int dc = enemies[i].c;
-                if(dr==-1 || temp[dr][dc]==0) continue;
+                if(dr==-1) continue;
                 temp[dr][dc] = 0;
                 killCount++;
             }
@@ -97,7 +97,7 @@ public class BOJ_G4_17135_캐슬디펜스 {
     }
 
     private static Enemy findEnemy(int r, int c, int[][]temp){
-        Queue<Enemy> enemies = new PriorityQueue<>();
+        Queue<Enemy> enemies = new PriorityQueue<>();  //priorityQueue사용해서 가장 가까운 적 반환
         Enemy closeEnemy = null;
         for(int i=1;i<=R;i++){
             for(int j=1;j<=C;j++){

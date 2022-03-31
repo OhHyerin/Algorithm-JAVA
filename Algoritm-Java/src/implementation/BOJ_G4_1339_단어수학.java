@@ -1,12 +1,13 @@
-package etc;
+package implementation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class BOJ_G4_1339_단어수학_완탐fail {
+public class BOJ_G4_1339_단어수학 {
     //백준 골드4
     //스터디 - 순조부
 
@@ -47,63 +48,53 @@ public class BOJ_G4_1339_단어수학_완탐fail {
 
 //        System.out.println(Arrays.toString(chars));
 
-//        combination(0, 0, new int[diffCharCount]);
-        int[] in = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+//        combination(0, 0, new int[diffCharCount]);]
+        int[] in = new int[diffCharCount];
+        int full = 9;
+        for(int i=0;i<diffCharCount;i++){
+            in[i] = full;
+            full--;
+        }
 
-        permutation(0,new int[diffCharCount], new boolean[10]);
+        permutation(0,new int[diffCharCount], in, new boolean[diffCharCount]);
 
         System.out.println(maxNum);
 
     }
 
-//    private static void combination(int cnt, int start, int[]selected){
-//        if(cnt==diffCharCount){
-//            System.out.println(Arrays.toString(selected));
-//            permutation(0, selected, new int[diffCharCount], new boolean[diffCharCount]);
-//            return;
-//        }
-//
-//        for(int i=start;i<10;i++){
-//            selected[cnt] = i;
-//            combination(cnt+1, i+1, selected);
-//        }
-//
-//    }
 
-    private static void permutation(int cnt,int[] matched, boolean[] isSelected){
+    private static void permutation(int cnt,int[] matched, int[] input, boolean[] isSelected){
         if(cnt==diffCharCount){
 //            System.out.println(Arrays.toString(matched));
-            String result[] = new String[N];
-            for(int i=0;i<result.length;i++){
-                result[i] = "";
+            HashMap<Character, Integer> hashMap = new HashMap<>();
+            for(int i=0;i<diffCharCount;i++){
+                hashMap.put(chars[i], matched[i]);
             }
+
+            int result[] = new int[strs.length];
 
             for(int i=0;i<strs.length;i++){
                 for(int j=0;j<strs[i].length();j++){
-                    for(int c=0;c<diffCharCount;c++){
-                        if(strs[i].charAt(j)==chars[c]){
-                            result[i] += String.valueOf(matched[c]);
-                        }
-                    }
+                   result[i] = result[i]*10 + hashMap.get(strs[i].charAt(j));
                 }
             }
 
             int numResult = 0;
             for(int i=0;i<result.length;i++){
 //                System.out.println(result[i]);
-                numResult += Integer.parseInt(result[i]);
+                numResult += result[i];
             }
             maxNum = Math.max(maxNum, numResult);
             return;
         }
 
         //inductive part
-        for(int i=0;i<10;i++){
+        for(int i=0;i<input.length;i++){
             if(isSelected[i]) continue;
 
-            matched[cnt] = i;
+            matched[cnt] = input[i];
             isSelected[i] = true;
-            permutation(cnt+1, matched, isSelected);
+            permutation(cnt+1, matched, input, isSelected);
             isSelected[i] = false;
         }
     }
