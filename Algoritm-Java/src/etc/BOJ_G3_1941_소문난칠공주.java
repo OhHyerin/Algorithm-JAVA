@@ -3,6 +3,7 @@ package etc;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -34,60 +35,79 @@ public class BOJ_G3_1941_소문난칠공주 {
         int index = 0;
         for (int r = 0; r < 5; r++) {
             for (int c = 0; c < 5; c++) {
-                pos[index] = new Pos(index, r, c);
+                pos[index] = new Pos(index, r, c, map[r][c]);
                 index++;
             }
         }
 
 //        System.out.println(Arrays.toString(pos));
 
-        combination(0, 0, new Pos[3]);
+        combination(0, 0, new Pos[7], 0);
+
+        System.out.println(result);
 
     }
 
-    private static void combination(int cnt, int start, Pos[] selected) {
-        if (cnt == 3) {
-//            System.out.println(Arrays.toString(selected));
-            result += bfs(selected);
+    private static void combination(int cnt, int start, Pos[] selected, int countY) {
+        if (cnt == 7) {
+            System.out.println(Arrays.toString(selected));
+//            result += bfs(selected);
+            bfs(selected);
             return;
         }
 
+        if(countY>4) return;
+
         for (int i = start; i < 25; i++) {
-            if (map[pos[i].r][pos[i].c] == 0) {
+            if (countY<4) {
                 selected[cnt] = pos[i];
-                combination(cnt + 1, i + 1, selected);
+                if(selected[cnt].who==0) {
+                    combination(cnt + 1, i + 1, selected, countY++);
+                }else{
+                    combination(cnt+1, i+1, selected, countY);
+                }
+            } else {
+                return;
             }
         }
+
     }
 
     private static int bfs(Pos[] selected){
         Queue<Pos> queue = new LinkedList<>();
-        int rr, rc;
-        for(int i=0;i<selected.length;i++){
-            queue.add(selected[i]);
-            rr = selected[i].r;
-            rc = selected[i].c;
-        }
+        boolean [][]visited = new boolean[5][5];
 
-        Pos cur = queue.poll();
-        int cr = cur.r;
-        int cc = cur.c;
-        int cn = cur.num;
+        queue.add(new Pos(selected[0].r, selected[0].c));
+        visited[selected[0].r][selected[0].c] = true;
+        int count = 1;
 
-        for(int i=1;i<selected.length;i++){
+        while(!queue.isEmpty()){
+            Pos cur = queue.poll();
 
             for(int d=0;d<4;d++){
                 int nr = cur.r+dr[d];
                 int nc = cur.c+dc[d];
 
-
-                Pos next = queue.poll();
-
                 if(!isIn(nr, nc)) continue;
-                if(next.r==nr && next.c==nc){
-                    cur = next;
+                if(visited[nr][nc]) continue;
+                boolean isHave = false;
+                for(int i=1;i<selected.length;i++){
+                    if(selected[i].r==nr && selected[i].c==nc){
+                        isHave = true;
+                        break;
+                    }
                 }
+                if(!isHave) continue;
+
+                queue.add(new Pos(nr, nc));
+                visited[nr][nc] = true;
+                count++;
             }
+
+            if(count==7){
+                result++;
+            }
+
         }
 
         return 0;
@@ -101,9 +121,16 @@ public class BOJ_G3_1941_소문난칠공주 {
         int num;
         int r;
         int c;
+        int who;
 
-        public Pos(int num, int r, int c) {
+        public Pos(int num, int r, int c, int who) {
             this.num = num;
+            this.r = r;
+            this.c = c;
+            this.who = who;
+        }
+
+        public Pos(int r, int c) {
             this.r = r;
             this.c = c;
         }
@@ -114,6 +141,7 @@ public class BOJ_G3_1941_소문난칠공주 {
                     "num=" + num +
                     ", r=" + r +
                     ", c=" + c +
+                    ", who=" + who +
                     '}';
         }
     }

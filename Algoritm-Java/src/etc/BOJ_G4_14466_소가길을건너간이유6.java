@@ -18,7 +18,7 @@ public class BOJ_G4_14466_소가길을건너간이유6 {
     static ArrayList<Pos> loads[][];  //길의 정보를 담고 있는 list
     static int[][] map;  //전체 map (소가 있는 곳은 1)
     static boolean[][] visited;  //bfs검사할 때 사용하는 visited
-    static int[] dr = {-1, 1, 0, 0}; 
+    static int[] dr = {-1, 1, 0, 0};
     static int[] dc = {0, 0, -1, 1};
     static int[] isSelected;  //combination으로 뽑힌 숫자 2개 저장하는 배열
     static Cow[] cows;  //소 number, r, c 저장하는 배열
