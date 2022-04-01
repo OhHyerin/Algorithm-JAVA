@@ -75,10 +75,12 @@ public class BOJ_G3_1941_소문난칠공주 {
 
     private static int bfs(Pos[] selected){
         Queue<Pos> queue = new LinkedList<>();
-        boolean [][]visited = new boolean[5][5];
+//        HashSet<Pos> hashSet = new HashSet<>();
+        boolean[][] visited = new boolean[5][5];
 
         queue.add(new Pos(selected[0].r, selected[0].c));
         visited[selected[0].r][selected[0].c] = true;
+//        hashSet.add(selected[0]);
         int count = 1;
 
         while(!queue.isEmpty()){
@@ -90,6 +92,7 @@ public class BOJ_G3_1941_소문난칠공주 {
 
                 if(!isIn(nr, nc)) continue;
                 if(visited[nr][nc]) continue;
+//                if(hashSet.contains()) continue;
                 boolean isHave = false;
                 for(int i=1;i<selected.length;i++){
                     if(selected[i].r==nr && selected[i].c==nc){

@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class BOJ_G1_1194_달이차오른다가자 {
+public class BOJ_G1_1194_달이차오른다가자_SOL {
+    //솔루션
     //그래프탐색 - bfs
     //비트마스킹 (또는 8차원 배열)
 
@@ -19,6 +20,8 @@ public class BOJ_G1_1194_달이차오른다가자 {
     민식이의 현재 위치 : 빈 곳이고, 민식이가 현재 서 있는 곳이다.(0)
     출구 : 달이 차오르기 때문에, 민식이가 가야하는 곳이다. 이 곳에 오면 미로를 탈출한다.(1)
      */
+
+    //관리할 상태가 여러개의 T/F 이므로 비트마스킹을 구상하였다.
 
 
     static int R, C;
@@ -36,12 +39,12 @@ public class BOJ_G1_1194_달이차오른다가자 {
 
         map = new char[R][C];
 
-        for (int i = 0; i < R; i++) {
+        for(int i=0;i<R;i++){
             String str = br.readLine();
-            for (int j = 0; j < C; j++) {
+            for(int j=0;j<C;j++){
                 map[i][j] = str.charAt(j);
-                if (map[i][j] == '0') {
-                    ms = new Pos(i, j, 0);
+                if(map[i][j]=='0'){
+                    ms = new Pos(i, j, 0);  //최초 민식이가 서있는 곳은 공백
                 }
             }
         }
@@ -50,56 +53,60 @@ public class BOJ_G1_1194_달이차오른다가자 {
 
     }
 
-    private static int bfs() {
+    private static int bfs(){
+        boolean[][][] visited = new boolean[R][C][1<<6];
         Queue<Pos> queue = new LinkedList<>();
-        boolean visited[][][] = new boolean[R][C][1 << 6];
 
+        //초기화
         queue.offer(ms);
         visited[ms.r][ms.c][ms.key] = true;
 
         int depth = 0;
-        while (!queue.isEmpty()) {
-            Pos cur = queue.poll();
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            while(size-- >0){
+                //1. 맨 처음 노드 데려오기
+                Pos head = queue.poll();
 
-            if (map[cur.r][cur.c] == '1') {
-                //탈출
-                return depth;
-            }
-
-            //열쇠일 때
-            if (map[cur.r][cur.c] >= 'a' && map[cur.r][cur.c] <= 'f') {
-                // |연산자로 기존 nk와 map값을 합침
-//                cur.key |= (1<<(map[cur.r][cur.c]-'a'));
-                cur.updateKey(map[cur.r][cur.c]);
-//                visited[cur.r][cur.c][cur.key] = true;
-//                queue.offer(new Pos(cur.r, cur.c, cur.key));
-            }
-
-
-            for (int d = 0; d < 4; d++) {
-                int nr = cur.r + dr[d];
-                int nc = cur.c + dc[d];
-
-                if(isIn(nr, nc) && !visited[nr][nc][cur.key]){
-                    if(map[nr][nc]=='#') continue;
-                    //문에 대한 키가 없을 때
-                    if(map[nr][nc]>='A' && map[nr][nc]<='F' && !cur.hasKey(map[nr][nc])) continue;
-
-                    //키가 있으면 갈 수 있음
-                    visited[nr][nc][cur.key] = true;
-                    queue.offer(new Pos(nr, nc, cur.key));
+                //2. 사용한다. - 정담을 찾거나 부가적인 행동
+                if(map[head.r][head.c]=='1'){
+                    return depth;
                 }
-            }//d
+                //키의 위에 있다면 -> update
+                if(map[head.r][head.c] >= 'a' && map[head.r][head.c]<='f'){
+                    head.updateKey(map[head.r][head.c]);
+                }
+
+                //3. 자식 노드 탐색
+                for(int d=0;d<4;d++) {
+                    int nr = head.r + dr[d];
+                    int nc = head.c + dc[d];
+
+                    //해당 지점을 현재 키의 상태로 가본적이 없다면 go
+                    if (isIn(nr, nc) && !visited[nr][nc][head.key]) {
+                        if (map[nr][nc] == '#') continue;
+
+
+                        //문을 못가는 경우는 - 문에 대한 키가 없을 때
+                        if (map[nr][nc] >= 'A' && map[nr][nc] <= 'F' && !head.hasKey(map[nr][nc])) continue;
+
+                        //아니면 진행
+                        visited[nr][nc][head.key] = true;
+                        queue.offer(new Pos(nr, nc, head.key));
+                    }
+                }
+            }//while
             depth++;
         }
+
         return -1;
     }
 
-    private static boolean isIn(int r, int c) {
-        return r >= 0 && c >= 0 && r < R && c < C;
+    private static boolean isIn(int r, int c){
+        return r>=0 && c>=0 && r<R && c<C;
     }
 
-    private static class Pos {
+    private static class Pos{
         int r;
         int c;
         int key;
