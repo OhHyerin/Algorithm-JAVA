@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 public class BOJ_G1_1194_달이차오른다가자 {
     //그래프탐색 - bfs
     //비트마스킹 (또는 8차원 배열)
+    //다시 풀어보기
 
     /*
     빈칸 : 언제나 이동할 수 있다 (.)
