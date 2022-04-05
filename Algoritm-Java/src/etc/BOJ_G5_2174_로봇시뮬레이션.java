@@ -12,6 +12,8 @@ public class BOJ_G5_2174_·Îº¿½Ã¹Ä·¹ÀÌ¼Ç {
     static int A, B;
     static int N, M;
     static ArrayList<Robot> robots;
+    static int[] dr = {-1, 0, 1, 0};
+    static int[] dc = {0, 1, 0, -1};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -38,6 +40,9 @@ public class BOJ_G5_2174_·Îº¿½Ã¹Ä·¹ÀÌ¼Ç {
         }
 
     }
+
+
+
 
     private static class Robot{
         int r;
