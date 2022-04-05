@@ -20,12 +20,12 @@ public class BOJ_G5_2174_·Îº¿½Ã¹Ä·¹ÀÌ¼Ç {
         StringTokenizer st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
 
-        A = Integer.parseInt(st.nextToken());
-        B = Integer.parseInt(st.nextToken());
+        A = Integer.parseInt(st.nextToken()); //°¡·Î
+        B = Integer.parseInt(st.nextToken()); //¼¼·Î
 
         st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken()); //·Îº¿ÀÇ °³¼ö
+        M = Integer.parseInt(st.nextToken()); //·Îº¿ ¸í·ÉÀÇ °³¼ö
 
         robots = new ArrayList<>();
 
@@ -53,6 +53,15 @@ public class BOJ_G5_2174_·Îº¿½Ã¹Ä·¹ÀÌ¼Ç {
             this.r = r;
             this.c = c;
             this.direct = direct;
+        }
+
+        @Override
+        public String toString() {
+            return "Robot{" +
+                    "r=" + r +
+                    ", c=" + c +
+                    ", direct=" + direct +
+                    '}';
         }
     }
 }

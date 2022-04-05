@@ -38,7 +38,6 @@ public class SWEA_5656_벽돌깨기 {
                 st = new StringTokenizer(br.readLine());
                 for (int j = 0; j < C; j++) {
                     map[i][j] = Integer.parseInt(st.nextToken());
-                    if (map[i][j] != 0) defalutCount++;
                 }
             }
 
@@ -101,8 +100,8 @@ public class SWEA_5656_벽돌깨기 {
         while (!queue.isEmpty()) {
             Point p = queue.poll();
             for (int d = 0; d < 4; d++) {
-                int nr = p.r + dr[d];
-                int nc = p.c + dc[d];
+                int nr = p.r;
+                int nc = p.c;
 
                 for (int k = 1; k < p.cnt; k++) { //벽돌의 크기-1만큼 반복
                     nr += dr[d];
