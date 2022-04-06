@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.StringTokenizer;
 
 public class BOJ_G4_2239_½ºµµÄí {
+    //HashSet»ç¿ë
+    //Àç±Í
 
     static int N = 9;
     static int[][] map;
@@ -16,7 +17,6 @@ public class BOJ_G4_2239_½ºµµÄí {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
 
         map = new int[N+1][N+1];
         blanks = new ArrayList<>();
@@ -63,7 +63,7 @@ public class BOJ_G4_2239_½ºµµÄí {
         }
 
         int sectionR = r/3*3;
-        int sectionC = c-c%3;
+        int sectionC = c/3*3;
 
         for(int i=sectionR;i<sectionR+3;i++){
             for(int j=sectionC; j<sectionC+3;j++){
