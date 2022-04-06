@@ -12,8 +12,8 @@ public class BOJ_G5_2174_로봇시뮬레이션 {
     static int A, B;
     static int N, M;
     static ArrayList<Robot> robots;
-    static int[] dr = {-1, 0, 1, 0};
-    static int[] dc = {0, 1, 0, -1};
+    static int[] dr = {-1, 0, 1, 0};  //시계반대방향
+    static int[] dc = {0, 1, 0, -1};  //시계반대방향
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

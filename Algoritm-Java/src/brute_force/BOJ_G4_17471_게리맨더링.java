@@ -1,4 +1,4 @@
-package etc;
+package brute_force;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,6 +8,12 @@ import java.util.StringTokenizer;
 
 public class BOJ_G4_17471_게리맨더링 {
     //문제집 - 삼성A형 기출문제
+    //완전탐색, dfs
+    /*
+    1. 그래프(배열) 만들기 - 조합
+    2. 선거구 연결 - 그래프 탐색
+    3. 인구수 파악
+    */
 
     /*
     반례
@@ -63,12 +69,16 @@ public class BOJ_G4_17471_게리맨더링 {
         }
 
 
-        if (diff == Integer.MAX_VALUE) {
-            System.out.println(-1);
-        } else {
-            System.out.println(diff);
-        }
+        System.out.println(diff==Integer.MAX_VALUE?-1 : diff);
     }
+
+    /**
+     *
+     * @param cnt           뽑은 조합의 개수
+     * @param start         출발점
+     * @param isSelected    선택 결과
+     * @param size          선택 해야하는 개수
+     */
 
     private static void combination(int cnt, int start, boolean[] isSelected, int size) {
         if (cnt == size) {
@@ -102,6 +112,14 @@ public class BOJ_G4_17471_게리맨더링 {
 
     }
 
+    /**
+     *
+     * @param index     방문하는 index
+     * @param selected  구성 정보
+     * @param visited   방문 여부
+     * @param type      탐색할 타입 (true, false)
+     * @return
+     */
     private static int dfs(int index, boolean[] selected, boolean[] visited, boolean type){
         visited[index] = true;
 

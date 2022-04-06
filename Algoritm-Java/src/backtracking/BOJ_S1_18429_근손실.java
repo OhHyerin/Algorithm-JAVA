@@ -33,6 +33,13 @@ public class BOJ_S1_18429_±Ù¼Õ½Ç {
 
     }
 
+    /**
+     *
+     * @param cnt           »ÌÀº °³¼ö
+     * @param selected      »ÌÀº intÇü ¹è¿­
+     * @param isSelected    °¢ ÀÚ¸®°¡ »ÌÇû³ª ¾È»ÌÇû³ª boolean¹è¿­
+     */
+
     private static void permutaion(int cnt, int[] selected, boolean[] isSelected){
         //base part
         if(cnt==N){
