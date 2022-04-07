@@ -3,10 +3,7 @@ package simulation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BOJ_G5_3190_뱀 {
     //구현
@@ -65,7 +62,7 @@ public class BOJ_G5_3190_뱀 {
             int nc = cc+dc[d];
 
             if(!isIn(nr, nc)) return;  //범위 벗어나면(벽에 부딪힘) 탈출
-//            if(queue.contains(new Pos(nr, nc))) {  //이렇게 하니까 몸통을 못찾음
+//            if(queue.contains(new Pos(nr, nc))) {  //equals메소드를 재정의해서 사용하지만 시간이 더 오래걸림
             if(map[nr][nc]==1){ // 뱀이 자기 몸에 부딪히면 탈출
 //                System.out.println("nr : " + nr+"  nc : "+nc);
                 return;
@@ -115,11 +112,12 @@ public class BOJ_G5_3190_뱀 {
         }
 
         @Override
-        public String toString() {
-            return "Pos{" +
-                    "r=" + r +
-                    ", c=" + c +
-                    '}';
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Pos pos = (Pos) o;
+            return r == pos.r && c == pos.c;
         }
+
     }
 }

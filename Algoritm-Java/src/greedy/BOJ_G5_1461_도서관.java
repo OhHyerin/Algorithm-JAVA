@@ -33,7 +33,7 @@ public class BOJ_G5_1461_도서관 {
             else mlist.add(Math.abs(a));  //입력 받으면서
         }
 
-        Collections.sort(plist, Collections.reverseOrder());
+        Collections.sort(plist, Collections.reverseOrder());  //내림차순 정렬
         Collections.sort(mlist, Collections.reverseOrder());
 
 //        System.out.println(plist);
@@ -41,12 +41,12 @@ public class BOJ_G5_1461_도서관 {
 
         int idx = 0;
         outer : while(!plist.isEmpty()){
-            answer += plist.get(0);
+            answer += plist.get(0);  //리스트의 첫 번째 더하기
 //            System.out.println("plist : "+plist.get(0));
-            plist.remove(0);
-            for(int i=0;i<M-1;i++){
-                if(plist.isEmpty()) break outer;
-                plist.remove(0);
+            plist.remove(0);  //지우기
+            for(int i=0;i<M-1;i++){  //책을 들 수 있는 개수만큼 돌면서
+                if(plist.isEmpty()) break outer;  //리스트 비었으면 리턴
+                plist.remove(0);  //지움 (더 먼 거리 가면서 가져다 놓을 수 있으니까)
             }
         }
 
@@ -66,8 +66,8 @@ public class BOJ_G5_1461_도서관 {
 //        System.out.println(answer);
 //        System.out.println(mlist);
 
-        answer *= 2;
-        answer -= maxNum;
+        answer *= 2;  //왔다갔다 하는 거리이므로 2배 해준 뒤,
+        answer -= maxNum; //가장 먼 거리는 한번 빼주기 (마지막 책 가져다놓고 다시 원점으로 안와도 된다고 했으므로)
 
         System.out.println(answer);
 
