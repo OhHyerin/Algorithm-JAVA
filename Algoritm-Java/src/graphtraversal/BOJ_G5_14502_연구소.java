@@ -21,7 +21,6 @@ public class BOJ_G5_14502_¿¬±¸¼Ò {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        StringBuilder sb = new StringBuilder();
 
         R = Integer.parseInt(st.nextToken());
         C = Integer.parseInt(st.nextToken());
