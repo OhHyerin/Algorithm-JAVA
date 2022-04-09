@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 public class BOJ_G5_A와B2 {
     //완전탐색, 재귀
+    //조건의 위치 중요
 
     /*
     - 문자열 뒤에 A를 추가한다.
