@@ -13,10 +13,6 @@ public class BOJ_6987_¿ùµåÄÅ {
     static int[][] match = new int[15][2];
     static boolean isPossible;
 
-    static final int WIN = 0;
-    static final int DRAW = 1;
-    static final int LOSE = 2;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
