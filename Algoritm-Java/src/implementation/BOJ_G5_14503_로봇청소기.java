@@ -80,8 +80,8 @@ public class BOJ_G5_14503_·Îº¿Ã»¼Ò±â {
             }
         }
 
-        int leftDir = (d+3)%4;
-//        if(leftDir<0) leftDir = 4+leftDir;
+        int leftDir = d-1;
+        if(leftDir<0) leftDir = 4+leftDir;
         int nr = r+dr[leftDir];
         int nc = c+dc[leftDir];
 

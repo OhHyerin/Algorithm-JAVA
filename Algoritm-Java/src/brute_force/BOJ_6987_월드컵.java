@@ -10,7 +10,7 @@ public class BOJ_6987_월드컵 {
     //경기 개수로 비교하기(재귀)
 
     static int[][] game;
-    static int[][] match = new int[15][2];
+    static int[][] match = new int[14][2];
     static boolean isPossible;
 
     public static void main(String[] args) throws IOException {

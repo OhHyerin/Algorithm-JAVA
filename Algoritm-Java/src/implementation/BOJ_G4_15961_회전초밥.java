@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class BOJ_G4_15961_회전초밥 {
+    //HashSet사용했을 때, 시간 초과
 
     static int N; // 회전 초밥 벨트에 놓인 접시의 수
     static int D; // 초밥의 가짓수

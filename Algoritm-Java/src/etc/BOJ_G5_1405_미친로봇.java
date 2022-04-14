@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_G5_1405_미친로봇 {
     //dfs, 재귀
+    //모든 경우를 탐색해야 하는 경우 dfs사용
     //문제를 이해하고, 좌표 잡는것만 잘하면 dfs는 어렵지 않음
 
     static int N;  //1~14
