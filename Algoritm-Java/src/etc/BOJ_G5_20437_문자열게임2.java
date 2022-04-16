@@ -16,6 +16,9 @@ public class BOJ_G5_20437_문자열게임2 {
 
     static String W;
     static int K;
+    static char[] chars;
+    static int[] alpha;
+    static int result;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,8 +31,41 @@ public class BOJ_G5_20437_문자열게임2 {
             W = br.readLine();
             K = Integer.parseInt(br.readLine());
 
+            alpha = new int[26];
+            chars = new char[W.length()];
+            for(int i=0;i<W.length();i++){
+                chars[i] = W.charAt(i);
+                alpha[chars[i]-'a']++;
+            }
+
+//            System.out.println(Arrays.toString(chars));
+
+
+            check();
+
 
 
         }//t
+    }
+
+    private static void check(){
+        int start = 0;
+        int end = 0;
+        int count = Integer.MAX_VALUE;
+
+        alpha[chars[0]-'a']++;
+        int maxAlphaCount = 1;
+
+        for(int i=0;i<chars.length;i++){
+            if(alpha[chars[i]-'a']<K) break;
+
+            start = i;
+            end = i;
+
+
+
+
+        }
+
     }
 }
