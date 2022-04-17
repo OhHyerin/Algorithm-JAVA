@@ -49,7 +49,6 @@ public class BOJ_G5_20055_컨베이어벨트위의로봇 {
             depth++;
             rotate();
             //내구도가 0인 칸의 개수 세기
-
             if(count<=0) break;
         }
 
@@ -59,36 +58,36 @@ public class BOJ_G5_20055_컨베이어벨트위의로봇 {
 
     private static void rotate(){
         //로봇과 벨트가 함께 회전
-        belt.add(0, new Pos(belt.get(belt.size()-1).belt, false));
-        belt.remove(belt.size()-1);
-//        System.out.println(belt);
-        belt.set(N, new Pos(belt.get(N).belt, false));
+        belt.add(0, belt.remove(belt.size()-1));
+        belt.get(N).robot = false;
 //        System.out.println("벨트회전: " + belt);
 
         //로봇 이동
-        for(int i=N-1;i>0;i--){
-            int curBelt = belt.get(i-1).belt;
-            boolean curRobot = belt.get(i-1).robot;
+        for(int i=N-1;i>=0;i--){
+            Pos cur = belt.get(i);
+            Pos next = belt.get(i+1);
 
-            if(!curRobot){
-                belt.set(i, new Pos(belt.get(i).belt, curRobot));
+            if(i==N-1){
+                cur.robot =false;
+                continue;
             }
-            else{
+            if(cur.robot){
                 //현재 위치에 로봇이 있고
-                if(belt.get(i).belt>=1 && !belt.get(i).robot){
-                    //다음 갈 위치의 벨트가 0보다 크고, 로봇이 없으면
-                    belt.set(i, new Pos(belt.get(i).belt-1, curRobot));
-                    belt.set(i-1, new Pos(curBelt, false));
-                    if(belt.get(i).belt==0) count--;
-                }else continue;
+                if(!next.robot && next.belt>0){
+                    //다음 이동할 위치에 로봇이 없고, 내구성이 1이상이면
+                    cur.robot = false;
+                    next.robot = true;
+                    next.belt -= 1;
+                    if(next.belt==0) count--;
+                }
             }
-//            belt.set(N, new Pos(belt.get(N).belt, false));
         }
 //        System.out.println("로봇 회전: " + belt);
 
         //올리는 위치에 있는 칸의 내구도가 0이 아니라면 올리는 위치에 로봇을 올린다.
-        if(belt.get(0).belt>0){
-            belt.set(0, new Pos(belt.get(0).belt-1, true));
+        if(belt.get(0).belt>0 && !belt.get(0).robot){
+            belt.get(0).robot = true;
+            belt.get(0).belt -= 1;
             if(belt.get(0).belt==0) count--;
         }
 
