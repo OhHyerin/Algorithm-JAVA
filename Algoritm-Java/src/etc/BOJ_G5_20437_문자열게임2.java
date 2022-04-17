@@ -61,9 +61,15 @@ public class BOJ_G5_20437_문자열게임2 {
 
             start = i;
             end = i;
+            int sumCount = 0;
+            boolean isSame = false;
 
+            while(true){
+                if(sumCount>=K){
 
+                }
 
+            }
 
         }
 
