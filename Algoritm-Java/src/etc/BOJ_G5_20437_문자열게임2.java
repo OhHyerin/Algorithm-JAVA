@@ -3,6 +3,8 @@ package etc;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BOJ_G5_20437_문자열게임2 {
 
@@ -18,6 +20,9 @@ public class BOJ_G5_20437_문자열게임2 {
     static int K;
     static char[] chars;
     static int[] alpha;
+    static HashMap<Character, ArrayList<Integer>> hashMap;
+    static int minStrLength = Integer.MAX_VALUE; //가장 짧은 연속 문자열 길이
+    static int maxStrLength = Integer.MIN_VALUE; //가장 긴 연속 문자열의 길이
     static int result;
 
     public static void main(String[] args) throws IOException {
@@ -33,9 +38,14 @@ public class BOJ_G5_20437_문자열게임2 {
 
             alpha = new int[26];
             chars = new char[W.length()];
+
+            hashMap = new HashMap<>();
+            for(int i=0;i<26;i++){
+                hashMap.put((char)(i+'a'), new ArrayList<>());  //각 알파벳 hashMap에 Key로 추가
+            }
+
             for(int i=0;i<W.length();i++){
-                chars[i] = W.charAt(i);
-                alpha[chars[i]-'a']++;
+                hashMap.get(W.charAt(i)).add(i);  //hashMap에서 각 Character를 찾아 리스트에 위치를 value를 담아 추가
             }
 
 //            System.out.println(Arrays.toString(chars));
@@ -43,35 +53,26 @@ public class BOJ_G5_20437_문자열게임2 {
 
             check();
 
-
+            if(minStrLength==Integer.MAX_VALUE){
+                sb.append("-1\n");
+                continue;
+            }
+            sb.append(minStrLength).append(" ").append(maxStrLength).append("\n");
 
         }//t
+        System.out.println(sb);
     }
 
     private static void check(){
-        int start = 0;
-        int end = 0;
-        int count = Integer.MAX_VALUE;
+        for(int i=0;i<26;i++){
+            char key = (char)(i+'a');
+            ArrayList<Integer> list = hashMap.get(key);  //각 char가 포함되어있는 list(위치값) 받아오기
 
-        alpha[chars[0]-'a']++;
-        int maxAlphaCount = 1;
-
-        for(int i=0;i<chars.length;i++){
-            if(alpha[chars[i]-'a']<K) break;
-
-            start = i;
-            end = i;
-            int sumCount = 0;
-            boolean isSame = false;
-
-            while(true){
-                if(sumCount>=K){
-
-                }
+            if(list.size()<K) continue; //연결되어있는 위치값의 개수(list의 크기)가 K보다 작으면 continue;
+            for(int j=0;j<list.size();j++){  //list의 크기가 K보다 크거나 같으면
 
             }
-
         }
-
     }
+
 }
