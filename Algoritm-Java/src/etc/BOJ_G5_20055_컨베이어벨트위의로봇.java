@@ -19,7 +19,6 @@ public class BOJ_G5_20055_컨베이어벨트위의로봇 {
 
     static int N, K;
     static ArrayList<Pos> belt;
-    static boolean[] robot;
     static int count;
 
     public static void main(String[] args) throws IOException {
@@ -31,7 +30,6 @@ public class BOJ_G5_20055_컨베이어벨트위의로봇 {
 
 //        belt = new int[N*2];
         belt = new ArrayList<>();
-        robot = new boolean[N*2];
 
 
         st = new StringTokenizer(br.readLine());
