@@ -1,11 +1,11 @@
-package etc;
+package dynamicprogramming;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ_G4_2096_내려가기_02 {
+public class BOJ_G4_2096_내려가기 {
     //dp
 
     static int N;
