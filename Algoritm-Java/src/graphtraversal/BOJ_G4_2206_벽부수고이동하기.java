@@ -71,13 +71,7 @@ public class BOJ_G4_2206_벽부수고이동하기 {
             for(int d=0;d<4;d++){
                 int nr = cur.r+dr[d];
                 int nc = cur.c+dc[d];
-//                if(isIn(nr, nc) && !visited[nr][nc]){
-//                    if(map[nr][nc]==0){
-//                        queue.add(new Pos(nr, nc, 0));
-//                        visited[nr][nc] = true;
-//                        count++;
-//                    }
-//                }
+
                 if(!isIn(nr, nc)) continue;
                 if(visited[nr][nc]<=cur.isDest) continue;  //방문한 적 있으면 continue
 
