@@ -35,16 +35,16 @@ public class BOJ_G5_1092_배 {
             box.add(Integer.parseInt(st.nextToken()));
         }
 
-        Collections.sort(crane, Collections.reverseOrder());
-        Collections.sort(box, Collections.reverseOrder());
+        Collections.sort(crane, Collections.reverseOrder());  //crane 내림차순 정렬
+        Collections.sort(box, Collections.reverseOrder());  //box 내림차순 정렬
 
         int answer = 0;
 
         if(crane.get(0)>=box.get(0)) {
-            while (!box.isEmpty()) {
+            while (!box.isEmpty()) {  //박스가 다 삭제되기 전까지(박스 있다면 반복)
                 int idx = 0;
-                for(int i=0;i<crane.size();){
-                    if(idx==box.size()) break;
+                for(int i=0;i<crane.size();){  //i : 현재 선택된 크레인
+                    if(idx==box.size()) break;  //박스 다 돌았으면 break;
                     else if(crane.get(i)>=box.get(idx)){
                         //크레인값보다 박스 값이 작으면 가능
                         box.remove(idx);

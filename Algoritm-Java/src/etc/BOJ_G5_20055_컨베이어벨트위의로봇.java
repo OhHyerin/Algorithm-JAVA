@@ -28,13 +28,11 @@ public class BOJ_G5_20055_컨베이어벨트위의로봇 {
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
 
-//        belt = new int[N*2];
         belt = new ArrayList<>();
 
 
         st = new StringTokenizer(br.readLine());
         for(int i=0;i<2*N;i++){
-//            belt[i] = Integer.parseInt(st.nextToken());
             belt.add(new Pos(Integer.parseInt(st.nextToken()), false));
         }
 
@@ -56,28 +54,28 @@ public class BOJ_G5_20055_컨베이어벨트위의로봇 {
 
     private static void rotate(){
         //로봇과 벨트가 함께 회전
-        belt.add(0, belt.remove(belt.size()-1));
-        belt.get(N).robot = false;
+        belt.add(0, belt.remove(belt.size()-1));  //맨 마지막 벨트를 삭제하고, 삭제한 값을 맨 앞에 추가
+        belt.get(N-1).robot = false;  //회전하고 N-1번째 벨트 위에있는 로봇은 삭제
 //        System.out.println("벨트회전: " + belt);
 
         //로봇 이동
-        for(int i=N-1;i>=0;i--){
-            Pos cur = belt.get(i);
-            Pos next = belt.get(i+1);
+        for(int i=N-2;i>=0;i--){
+            Pos cur = belt.get(i);  //현재 위치
+            Pos next = belt.get(i+1); //다음 위치
 
-            if(i==N-1){
-                cur.robot =false;
-                continue;
-            }
             if(cur.robot){
                 //현재 위치에 로봇이 있고
                 if(!next.robot && next.belt>0){
                     //다음 이동할 위치에 로봇이 없고, 내구성이 1이상이면
-                    cur.robot = false;
-                    next.robot = true;
-                    next.belt -= 1;
-                    if(next.belt==0) count--;
+                    cur.robot = false;  //현재 위치 로봇 삭제
+                    next.robot = true;  //다음 위치 로봇 생성
+                    next.belt -= 1;  //벨트 내구성 1 감소
+                    if(next.belt==0) count--;  //만약 내구성이 0이된다면 count 1 감소
                 }
+            }
+            if(i+1==N-1){  //내리는 위치라면
+                next.robot =false; // 로봇 내리기(삭제)
+                continue;
             }
         }
 //        System.out.println("로봇 회전: " + belt);
