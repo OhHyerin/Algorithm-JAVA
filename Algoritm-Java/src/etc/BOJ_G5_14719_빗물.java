@@ -7,6 +7,8 @@ import java.util.StringTokenizer;
 
 public class BOJ_G5_14719_빗물 {
     //시뮬레이션, 구현
+    
+    //제일 높은 곳 기준으로 왼쪽, 오른쪽 검사
 
     static int R, C;
     static int[][] map;
