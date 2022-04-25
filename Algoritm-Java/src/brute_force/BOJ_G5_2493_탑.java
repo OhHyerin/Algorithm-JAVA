@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_G5_2493_탑 {
     //백준 골드5
+    //완전탐색
     //스택
     //1. 스택이 비어있다면 0을 출력하고, 현재 탑을 스택에 push한다.
     //2. 스택이 비어있지 않다면,
