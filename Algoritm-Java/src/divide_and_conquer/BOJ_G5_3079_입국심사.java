@@ -1,4 +1,4 @@
-package etc;
+package divide_and_conquer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
