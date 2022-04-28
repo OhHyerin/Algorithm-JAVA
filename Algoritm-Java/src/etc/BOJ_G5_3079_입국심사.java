@@ -46,10 +46,8 @@ public class BOJ_G5_3079_입국심사 {
 
             for(int i=0;i<times.length;i++){
                 long ableCount = mid/times[i];  //mid초 안에 몇 명이 통과할 수 있을지?
-
-                if(sum>=m) break;
-
                 sum += ableCount;
+                if(sum>=m) break;
             }
 
             if(sum>=m){

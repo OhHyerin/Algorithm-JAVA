@@ -19,8 +19,6 @@ public class BOJ_G4_2141_¿ìÃ¼±¹ {
      */
 
     static int N;
-//    static int[] location;
-//    static int[] people;
     static List<Pos> list;
     static long sumPeople;
 
