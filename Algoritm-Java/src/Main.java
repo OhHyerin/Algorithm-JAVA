@@ -1,5 +1,7 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class Main {
 
@@ -10,6 +12,13 @@ public class Main {
 
         String answer = "";
 
+        answer = "12345";
+        System.out.println(answer.length());
+
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        System.out.println(list.size());
 
         HashSet<String> hashSet = new HashSet<>();
 
