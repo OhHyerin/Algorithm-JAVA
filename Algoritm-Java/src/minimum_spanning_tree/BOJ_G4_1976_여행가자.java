@@ -48,14 +48,14 @@ public class BOJ_G4_1976_여행가자 {
 
         st = new StringTokenizer(br.readLine());
         for(int i=0;i<M;i++){
-            travel[i] = Integer.parseInt(st.nextToken());
+            travel[i] = Integer.parseInt(st.nextToken());  //여행 계획
         }
 
         int startRoot = find(travel[0]); //여행 경로의 첫 번째 여행지 루트노드를 찾음
         boolean check = true;
         for(int i=1;i<M;i++){
-            if(startRoot != find(travel[i])){
-                check = false;
+            if(startRoot != find(travel[i])){  //안이어져있으면
+                check = false;  //check false
                 break;
             }
         }

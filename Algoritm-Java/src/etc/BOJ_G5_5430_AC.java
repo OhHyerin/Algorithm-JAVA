@@ -4,16 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class BOJ_S1_1522_문자열교환 {
+public class BOJ_G5_5430_AC {
 
-    static String str;
-    static char[] chars;
+    /*
+    R : 뒤집기
+    D : 버리기
+     */
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        str = br.readLine();
-        chars = str.toCharArray();
 
     }
 }
