@@ -38,4 +38,6 @@ public class BOJ_G5_5430_AC {
         }//t
 
     }
+
+    private static String make()
 }
