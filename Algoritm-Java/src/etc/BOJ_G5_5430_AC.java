@@ -23,7 +23,6 @@ public class BOJ_G5_5430_AC {
      */
 
     static char[] orders;
-    static int[] numbers;
     static Deque<Integer> deque;
     static StringBuilder sb = new StringBuilder();
 
@@ -35,14 +34,14 @@ public class BOJ_G5_5430_AC {
         for(int t=1;t<=T;t++){
 
             String str = br.readLine();
-            orders = str.toCharArray();
+            orders = str.toCharArray();  //명령사항 받기
 
             int n = Integer.parseInt(br.readLine());
 
             st = new StringTokenizer(br.readLine(), "[],");
             deque = new ArrayDeque<>();
             for(int i=0;i<n;i++){
-                deque.add(Integer.parseInt(st.nextToken()));
+                deque.add(Integer.parseInt(st.nextToken()));  //덱에 값 넣어주기
             }
 
             make();
@@ -54,7 +53,7 @@ public class BOJ_G5_5430_AC {
     }
 
     private static void make(){
-        boolean start = true; //왼쪽부터 시작
+        boolean start = true; //true : 왼->오, false : 오->왼
 
         for(int i=0;i<orders.length;i++){
 
@@ -83,14 +82,14 @@ public class BOJ_G5_5430_AC {
         //남은거 String으로 변환
         sb.append("[");
 
-        if(deque.isEmpty()){
+        if(deque.isEmpty()){  //여기서 null검사 안했더니 [null]이 나와서 틀렸습니다 나옴
             sb.append("]\n");
             return;
         }
 
-        if(start) {
+        if(start) {  //왼->오면 앞에서 삭제
             sb.append(deque.pollFirst());
-        }else{
+        }else{         //오->왼이면 뒤에서 삭제
             sb.append(deque.pollLast());
         }
 
