@@ -8,6 +8,7 @@ public class BOJ_S1_15989_123더하기4 {
     //dp
 
     static int N;
+    static int[] dp;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,6 +18,7 @@ public class BOJ_S1_15989_123더하기4 {
         for(int t=1;t<=T;t++){
 
             N = Integer.parseInt(br.readLine());
+            dp = new int[N];
 
 
         }//t
