@@ -14,8 +14,6 @@ public class BOJ_G5_14719_ºø¹° {
 
     static int R, C;
     static List<Node> list;
-    static int leftMax, rightMax;
-    static Node max, left, right;
     static int result;
 
     public static void main(String[] args) throws IOException {
