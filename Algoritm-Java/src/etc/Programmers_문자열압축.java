@@ -5,10 +5,14 @@ public class Programmers_문자열압축 {
 
     public static void main(String[] args) {
         System.out.println(solution("aabbaccc"));
+        System.out.println(solution("ababcdcdababcdcd"));
+        System.out.println(solution("abcabcdede"));
+        System.out.println(solution("abcabcabcabcdededededede"));
+        System.out.println(solution("xababcdcdababcdcd"));
     }
 
     static int solution(String s){
-        int answer = Integer.MAX_VALUE;
+        int answer = s.length();
 
         for(int i=1;i<=s.length()/2;i++){  //크기가 1부터 s.length()/2까지 검사
             int leng = compression(s, i).length();
