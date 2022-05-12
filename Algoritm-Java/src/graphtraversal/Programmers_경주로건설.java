@@ -1,4 +1,4 @@
-package etc;
+package graphtraversal;
 
 import java.util.LinkedList;
 import java.util.Queue;

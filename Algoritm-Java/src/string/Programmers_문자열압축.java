@@ -1,4 +1,4 @@
-package etc;
+package string;
 
 public class Programmers_문자열압축 {
     // 문자열
