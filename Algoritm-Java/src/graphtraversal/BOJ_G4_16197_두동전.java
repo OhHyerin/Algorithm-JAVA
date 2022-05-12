@@ -37,7 +37,7 @@ public class BOJ_G4_16197_두동전 {
         C = Integer.parseInt(st.nextToken());
 
         map = new char[R][C];
-        coins = new Coin[2];
+        coins = new Coin[2];  //코인 2개
 
         int index = 0;
 
@@ -46,7 +46,7 @@ public class BOJ_G4_16197_두동전 {
             for(int j=0;j<C;j++){
                 map[i][j] = str.charAt(j);
                 if(map[i][j]=='o'){
-                    coins[index] = new Coin(i, j);
+                    coins[index] = new Coin(i, j);  //각 코인 저장
                     index++;
                 }
             }
@@ -92,6 +92,8 @@ public class BOJ_G4_16197_두동전 {
                 int nr2 = r2+dr[d];
                 int nc2 = c2+dc[d];
 
+                // (isIn(nr1, nc1) ^ isIn(nr2, nc2)) -> 로도 쓸 수 있음
+                
                 if(isIn(nr1, nc1) && !isIn(nr2, nc2)){  //동전 2만 떨어졌을 때
 //                    System.out.println("동전2만 떨어짐");
                     isSuccess = true;

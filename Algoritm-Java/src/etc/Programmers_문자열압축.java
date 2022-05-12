@@ -1,6 +1,7 @@
 package etc;
 
 public class Programmers_문자열압축 {
+    // 문자열
     // https://programmers.co.kr/learn/courses/30/lessons/60057
 
     public static void main(String[] args) {
