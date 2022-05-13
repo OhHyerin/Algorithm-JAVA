@@ -1,40 +1,16 @@
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.io.InputStreamReader;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        String [] participant = {};
-        String [] completion = {};
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String answer = "";
+        int a = Integer.parseInt(br.readLine());
+        int b = Integer.parseInt(br.readLine());
 
-        answer = "12345";
-        System.out.println(answer.length());
-
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        System.out.println(list.size());
-
-        HashSet<String> hashSet = new HashSet<>();
-
-        for(int i=0;i<completion.length;i++){
-            hashSet.add(completion[i]);
-        }
-
-        for(int i=0;i<participant.length;i++){
-            if(!hashSet.contains(participant[i])){
-                answer = participant[i];
-                break;
-            }
-        }
-
-
-        System.out.println(answer);
-
+        System.out.println(a+b);
     }
 }
