@@ -7,19 +7,34 @@ public class Programmers_메뉴리뉴얼 {
         int[] course={2, 3, 4};
         String[] result = solution(order, course);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        sb.append(result[0]);
-        for(int i=1;i<result.length;i++){
-            sb.append("\",");
-            sb.append(result[i]).append("\"");
+        for(int i=0;i<result.length;i++){
+            System.out.println(result[i]);
         }
-        System.out.println(sb);
     }
 
     public static String[] solution(String[] orders, int[] course){
         String[] answer = {};
 
+        int[][] map = new int[26][26];
+
+        for(int i=0;i<orders.length;i++){
+            String str = orders[i];
+            for(int j=0;j<str.length();j++){
+                char ch1= str.charAt(j);
+                for(int c=j+1;c<str.length();c++){
+                    char ch2 = str.charAt(c);
+                    map[ch1-'A'][ch2-'A']++;
+                    map[ch2-'A'][ch1-'A']++;
+                }
+            }
+        }
+
+        for(int i=0;i<map.length;i++){
+            for(int j=0;j<map[i].length;j++){
+                System.out.print(map[i][j]+" ");
+            }
+            System.out.println();
+        }
 
 
 
