@@ -17,6 +17,7 @@ public class BOJ_G4_8972_미친아두이노 {
     static int[] dc = {0, -1, 0, 1, -1, 0, 1, -1, 0, 1};
     static int count;
     static boolean isFinish;
+    static Queue<Pos> bomb;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -39,7 +40,7 @@ public class BOJ_G4_8972_미친아두이노 {
                     JS = new Pos(i, j);
                 }else if(temp=='R'){
                     map[i][j] = 1;
-                    robots.add(new Pos(i, j));
+//                    robots.add(new Pos(i, j));
                 }
             }
         }
@@ -99,57 +100,66 @@ public class BOJ_G4_8972_미친아두이노 {
             map[cur.r][cur.c] = 0;
             map[nr][nc] = -1;
 
-            System.out.println("--------종수이동-----------");
+//            System.out.println("--------종수이동-----------");
+//            printAll();
+
+            bomb = new LinkedList<>();
+            robots = new ArrayList<>();
             for(int i=0;i<R;i++){
                 for(int j=0;j<C;j++){
-                    System.out.print(map[i][j]+" ");
+                    if(map[i][j]==1){
+                        robots.add(new Pos(i, j));
+                    }
                 }
-                System.out.println();
             }
 
 
-            Queue<Pos> bomb = new LinkedList<>();
             //아두이노 이동
             for(int i=0;i<robots.size();i++){
                 Pos curRobot = robots.get(i);
 
-                System.out.println(curRobot);
-                int d = closeMove(nr, nc, curRobot.r, curRobot.c);
+//                int d = closeMove(nr, nc, curRobot.r, curRobot.c);
+                int min = Integer.MAX_VALUE;
+                int d = 0;
+                for(int j=1;j<10;j++){
+                    if(j==5) continue;
+                    int dir = Math.abs(nr- (curRobot.r+dr[j])) + Math.abs(nc-(curRobot.c+dc[j]));
+                    if(dir<min){
+                        d = j;
+                        min = dir;
+                    }
+                }
+//                System.out.println("d : "+d+"   min : "+min);
 
-                System.out.println(curRobot.r+dr[d]+""+curRobot.c+dc[d]);
-                //로그
 
                 map[curRobot.r][curRobot.c] = 0;
 //                map[curRobot.r+dr[d]][curRobot.c+dc[d]]++;
                 bomb.add(new Pos(curRobot.r+dr[d], curRobot.c+dc[d]));
             }
 
+//            System.out.println("---------아두이노 어디로갈지 저장----------");
+//            printAll();
+
+
+
             //어디로갈지 정했으면 아두이노 이동
             while (!bomb.isEmpty()){
                 Pos curBomb = bomb.poll();
 
-//                if(!isIn(curBomb.r,curBomb.c)) continue;
-                System.out.println("r"+curBomb.r+"c"+curBomb.c);
+//                System.out.println("r:"+curBomb.r+" c:"+curBomb.c);
 
-                if(map[curBomb.r][curBomb.c]==-1){
+                if(curBomb.r==nr && curBomb.c==nc){
                     //종수만남
                     isFinish = true;
                     return;
                 }
-                else if(map[curBomb.r][curBomb.c]>0){
-                    //다른 아두이노 만나면 그 자리에 아두이노 한개 추가
+//                else if(map[curBomb.r][curBomb.c]>0){
+                    //다른 아두이노 만나면
                     map[curBomb.r][curBomb.c]++;
-                }
+//                    map[curBomb.r][curBomb.c] = 0;  //아두이노 터트림
+//                }
             }
 
-            System.out.println("-------------------");
-            for(int i=0;i<R;i++){
-                for(int j=0;j<C;j++){
-                    System.out.print(map[i][j]+" ");
-                }
-                System.out.println();
-            }
-            //아두이노 터트림
             for(int i=0;i<R;i++){
                 for(int j=0;j<C;j++){
                     if(map[i][j]>1){
@@ -158,6 +168,10 @@ public class BOJ_G4_8972_미친아두이노 {
                 }
             }
 
+//            System.out.println("-------아두이노 터지고 난 후------------");
+//            printAll();
+
+
             //종수 살아남았으면 다음 위치 저장
             queue.add(new Pos(nr, nc));
 
@@ -165,32 +179,38 @@ public class BOJ_G4_8972_미친아두이노 {
 
     }
 
-    private static int closeMove(int jr, int jc, int rr, int rc) {
-        int dir = 0;
-        if(rr<jr && rc<jc){
-            dir = 7;
-        }else if(rr<jr && rc==jc){
-            dir = 8;
-        }else if(rr<jr && rc>jc){
-            dir = 9;
-        }else if(rr==jr && rc<jc){
-            dir = 4;
-        }else if(rr==jr && rc>jc){
-            dir = 6;
-        }else if(rr>jr && rc<jc){
-            dir = 1;
-        }else if(rr>jr && rc==jc){
-            dir = 2;
-        }else if(rr>jr && rc>jc){
-            dir = 3;
+//    private static int closeMove(int jr, int jc, int rr, int rc) {
+//        int dir = 0;
+//        if(rr<jr && rc<jc){
+//            dir = 3;
+//        }else if(rr<jr && rc==jc){
+//            dir = 2;
+//        }else if(rr<jr && rc>jc){
+//            dir = 1;
+//        }else if(rr==jr && rc<jc){
+//            dir = 6;
+//        }else if(rr==jr && rc>jc){
+//            dir = 4;
+//        }else if(rr>jr && rc<jc){
+//            dir = 9;
+//        }else if(rr>jr && rc==jc){
+//            dir = 8;
+//        }else if(rr>jr && rc>jc){
+//            dir = 7;
+//        }
+//
+//        return dir;
+//    }
+
+    private static void printAll(){
+        for(int i=0;i<R;i++){
+            for(int j=0;j<C;j++){
+                System.out.print(map[i][j]+" ");
+            }
+            System.out.println();
         }
-
-        return dir;
     }
 
-    private static boolean isIn(int r, int c) {
-        return r >= 0 && c >= 0 && r < R && c < C;
-    }
 
     private static class Pos {
         int r;
