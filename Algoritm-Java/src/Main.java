@@ -1,13 +1,24 @@
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Random;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    static int[] arr = {1, 5, 4, 2, 9, 7};
 
-        Random rand = new Random();
-        for(int i=0;i<7;i++){
-            System.out.println(rand.nextInt(1000)+1);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+
+        int n = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+
+        for(int i=a;i<=b;i++){
+            int temp = arr[a];
         }
+
     }
 }

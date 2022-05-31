@@ -13,7 +13,6 @@ public class Solution {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int T = Integer.parseInt(br.readLine());
-
         for (int t = 0; t < T; t++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
 
@@ -37,6 +36,8 @@ public class Solution {
 
             isSelected[0] = S;
             isSelected[N - 1] = E;
+            isVisited[S] = true;
+            isVisited[E] = true;
 
             for (int i = 0; i < M; i++) {
                 st = new StringTokenizer(br.readLine());
@@ -47,11 +48,12 @@ public class Solution {
                 matrix[to][from] = w;
             }
 
-            Permu(1);
+            DFS(1, 0, weight[S], S);
 
             for (int n : answer) {
                 System.out.printf("%c", (char) n + 'A');
             }
+
             System.out.println();
             System.out.println(min);
             min = Integer.MAX_VALUE;
@@ -59,11 +61,14 @@ public class Solution {
 
     }
 
-    static void Permu(int cnt) {
+    static void DFS(int cnt, int sum, int cart, int from) {
+
         if (cnt == N - 1) {
-            int sum = Calc();
-//         System.out.println(Arrays.toString(isSelected)+" "+sum);
-            if (sum < min) {
+
+            int to = isSelected[cnt];
+            sum += cart * matrix[from][to];
+
+            if (min > sum) {
                 min = sum;
                 answer = Arrays.copyOf(isSelected, N);
             }
@@ -72,33 +77,23 @@ public class Solution {
         }
 
         for (int i = 0; i < N; i++) {
-            if (!isVisited[i] && i != S && i != E) {
-                isVisited[i] = true;
 
+            if (!isVisited[i]) {
+
+                isVisited[i] = true;
                 isSelected[cnt] = i;
-                Permu(cnt + 1);
+
+                int to = isSelected[cnt];
+                int next = sum + cart * matrix[from][to];
+
+                if (next < min) {
+                    DFS(cnt + 1, next, cart + weight[i], to);
+                }
 
                 isVisited[i] = false;
             }
-        }
-
-    }
-
-    static int Calc() {
-        int sum = 0;
-        int W = weight[S];
-
-        for (int i = 1; i < N; i++) {
-
-            int from = isSelected[i - 1];
-            int to = isSelected[i];
-
-            sum += matrix[from][to] * W;
-            W += weight[to];
 
         }
-
-        return sum;
     }
 
 }
