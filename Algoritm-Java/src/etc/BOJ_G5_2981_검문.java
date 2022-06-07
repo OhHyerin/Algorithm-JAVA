@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_G5_2981_검문 {
     //math, 유클리드호제법, 최대공약수
+    //아직 해결 못함
 
     static int N;
     static long[] nums;
