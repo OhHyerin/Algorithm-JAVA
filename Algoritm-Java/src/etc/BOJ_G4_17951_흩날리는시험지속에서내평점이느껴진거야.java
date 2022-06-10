@@ -53,6 +53,7 @@ public class BOJ_G4_17951_흩날리는시험지속에서내평점이느껴진거야 {
 
             int mid = (left+right)/2;  //점수 합의 중간값
 
+            //점수 합의 범위에 k개의 그룹으로 나눌 수 있나 확인
             int groupSum = 0;
             int groupCount = 0;
 
