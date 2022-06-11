@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_G4_17951_흩날리는시험지속에서내평점이느껴진거야 {
     //이분탐색
+    //스터디 new 1주차
 
     /*
     문제 이해
