@@ -9,22 +9,27 @@ import java.util.StringTokenizer;
 
 public class BOJ_G3_1726_로봇 {
     //시뮬
-    //이동해야하는 방향이랑 문제에서 준 방향이 번호가 달라서 따로 설정해야함
+    //이동해야하는 방향이랑 문제에서 준 방향이 번호가 달라서 따로 설정해야함\
+    //방향 변경 말고는 기존 bfs와 동일 (모든 지점 다들려보기)
 
     /*
+    문제 설명
     1 : 동
     2 : 서
     3 : 남
     4 : 북
+
+    Go k : 현재 향하고 있는 방향으로 최대 3칸 움직인다
+    Turn dir : dir은 left또는 right이며, 각각 왼쪽 또는 오른쪽으로 90도 회전한다.
      */
 
     static int R, C;
     static int[][] map;
-    static int[] dr = {0, 0, 1, -1};
+    static int[] dr = {0, 0, 1, -1};  //동->서->남->북
     static int[] dc = {1, -1, 0, 0};
-    static Pos start;
-    static Pos end;
-    static int orderCnt;
+    static Pos start;  //시작 방향과 위치
+    static Pos end;  //끝나는 지점의 방향과 위치
+    static int orderCnt;  //명령 횟수
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -58,7 +63,7 @@ public class BOJ_G3_1726_로봇 {
 
     static void bfs(){
         Queue<Pos> queue = new LinkedList<>();
-        boolean[][][] visited = new boolean[R+1][C+1][5];  //방향까지
+        boolean[][][] visited = new boolean[R+1][C+1][5];  //방향까지 한번에 담기
 
         queue.add(start);
         visited[start.r][start.c][start.d] = true;
@@ -72,14 +77,14 @@ public class BOJ_G3_1726_로봇 {
                 return;
             }
 
-            for(int move=0;move<=3;move++){
+            for(int move=0;move<=3;move++){ //k가 0, 1, 2, 3일 때
                 //방향잡는게 어려웠음
                 int nr = cur.r+(dr[cur.d]*move);
                 int nc = cur.c+(dc[cur.d]*move);
 
                 if(!isIn(nr, nc)) break; //방향 벗어나면 break (방향 바꿔야함)
                 if(map[nr][nc]==1) break; //갈 수 없는 곳이면 break (방향 바꿔야함)
-                if(visited[nr][nc][cur.d]) continue;  //이미 방문한 상태로 방문한 곳이면 continue
+                if(visited[nr][nc][cur.d]) continue;  //이미 방향까지 방문한 곳이면 continue
 
                 visited[nr][nc][cur.d] = true;
                 queue.add(new Pos(nr, nc, cur.d, cur.cnt+1));
@@ -88,7 +93,7 @@ public class BOJ_G3_1726_로봇 {
             //방향만 바꿔야되면
             for(int i=0;i<2;i++){
                 int nd = 0;
-                if(cur.d==0){
+                if(cur.d==0){  //왼, 오
                     nd = i==0? 3:2;
                 }else if(cur.d==1){
                     nd = i==0? 2:3;
