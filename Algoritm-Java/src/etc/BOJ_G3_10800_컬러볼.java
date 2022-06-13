@@ -9,7 +9,6 @@ import java.util.StringTokenizer;
 
 public class BOJ_G3_10800_컬러볼 {
     //구현, 정렬, 누적합
-
     /*
     문제설명
     자기 공보다 크기가 작고 색이 다른 공을 사로잡아 그 공의 크기만큼 점수를 얻는다.
