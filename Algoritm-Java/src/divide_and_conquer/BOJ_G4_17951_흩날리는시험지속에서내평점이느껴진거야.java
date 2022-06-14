@@ -1,4 +1,4 @@
-package etc;
+package divide_and_conquer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,8 +35,8 @@ public class BOJ_G4_17951_흩날리는시험지속에서내평점이느껴진거야 {
         st = new StringTokenizer(br.readLine());
         for(int i=0;i<N;i++){
             scores[i] = Integer.parseInt(st.nextToken());  //점수 입력받음
-            sum += scores[i];  //sum은 모든 점수의 합 (최댓값)
-            min = Math.min(min, scores[i]);
+            sum += scores[i];  //모든 점수의 합인 sum을 구함 (최댓값)
+            min = Math.min(min, scores[i]);  //모든 점수 중 최솟값 min을 구함
         }
         
         //이분탐색

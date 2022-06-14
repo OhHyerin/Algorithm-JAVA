@@ -29,7 +29,7 @@ public class BOJ_G5_19942_다이어트 {
 
         st = new StringTokenizer(br.readLine());
         for(int i=0;i<4;i++){
-            minNut[i] = Integer.parseInt(st.nextToken());
+            minNut[i] = Integer.parseInt(st.nextToken());  //mp, mf, ms, mv
         }
 
         for(int i=1;i<=N;i++){
@@ -57,17 +57,17 @@ public class BOJ_G5_19942_다이어트 {
 //           for(int i=0;i<result.length;i++){
 //               System.out.print(result[i]+" ");
 //           }
-           Collections.sort(minList);
-           System.out.println(minList.get(0));
+           Collections.sort(minList);  //최소 가격 리스트들을 정렬
+           System.out.println(minList.get(0));  //그 중 사전순으로 젤 먼저오는거 출력
        }
 
     }
 
-    private static void subSet(int cnt, boolean[] isSelected){
-       if(cnt==N){
+    private static void subSet(int cnt, boolean[] isSelected){  //인덱스 번호로
+       if(cnt==N){  //뽑히고 안뽑히고가 저장되어있는 isSelected가 완성
            List<Integer> select = new ArrayList<>();
            for(int i=0;i<N;i++){
-               if(isSelected[i]) select.add(i+1);
+               if(isSelected[i]) select.add(i+1);  //뽑힌 인덱스들 리스트 select에 따로 저장
            }
 
 //           for(int i=0;i<select.size();i++) {
@@ -77,12 +77,12 @@ public class BOJ_G5_19942_다이어트 {
 //           System.out.println("-------------");
 
            //최소 영양소 만족하는지 검사
-           int cost = 0;
-           int cnt1 = 0;
-           int cnt2 = 0;
-           int cnt3 = 0;
-           int cnt4 = 0;
-           for(int i=0;i<select.size();i++){
+           int cost = 0;  //가격
+           int cnt1 = 0;  //단백질
+           int cnt2 = 0;  //지방
+           int cnt3 = 0;  //탄수화물
+           int cnt4 = 0;  //비타민
+           for(int i=0;i<select.size();i++){  //각 값들을 모두 더해줌
                int num = select.get(i);
                cnt1 += nuts[num][0];
                cnt2 += nuts[num][1];
@@ -97,14 +97,14 @@ public class BOJ_G5_19942_다이어트 {
            }
            //만족 한다면 최소 가격
            //|| (minCost>=cost && mianList.size()>select.size())
-           if(minCost>=cost ){
-               if(minCost>cost) minList.clear();
+           if(minCost>=cost ){  //현재 최소가격보다 싸거나 같은가격이라면
+               if(minCost>cost) minList.clear();  //현재 최소가격보다 작으면 minList를 비우고
                StringBuilder temp = new StringBuilder();
-               for(int i=0;i<select.size();i++){
+               for(int i=0;i<select.size();i++){  //선택된 식재료들의 가격을 string으로 더해줌
                    temp.append(select.get(i)+" ");
                }
-               minList.add(temp.toString());
-               minCost = cost;
+               minList.add(temp.toString());  //리스트가 string 형태로 저장됨
+               minCost = cost;  //현재 최소가격 갱신
            }
 
            return;

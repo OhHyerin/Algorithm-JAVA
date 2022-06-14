@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_G3_1726_로봇 {
     //시뮬
-    //이동해야하는 방향이랑 문제에서 준 방향이 번호가 달라서 따로 설정해야함\
+    //이동해야하는 방향이랑 문제에서 준 방향이 번호가 달라서 따로 설정해야함
     //방향 변경 말고는 기존 bfs와 동일 (모든 지점 다들려보기)
 
     /*
@@ -90,7 +90,7 @@ public class BOJ_G3_1726_로봇 {
                 queue.add(new Pos(nr, nc, cur.d, cur.cnt+1));
             }
 
-            //방향만 바꿔야되면
+            //방향만 바꿔야되면 바꿔야하는 방향을 직접 지정
             for(int i=0;i<2;i++){
                 int nd = 0;
                 if(cur.d==0){  //왼, 오
