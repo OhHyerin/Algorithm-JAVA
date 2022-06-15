@@ -105,6 +105,7 @@ public class BOJ_G4_2617_구슬찾기 {
 //            }
 //        }
 
+//        int mid = (N+1)/2;
         int mid = (N/2)+1;
         int count = 0;
 
