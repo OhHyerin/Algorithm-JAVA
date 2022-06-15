@@ -62,7 +62,7 @@ public class BOJ_G4_17951_흩날리는시험지속에서내평점이느껴진거야 {
                 if(groupSum>=mid){
                     //합이 mid보다 크면 그룹 자르기
                     groupSum = 0;
-                    groupCount++;
+                    groupCount++;  //그룹 추가
                 }
             }
 

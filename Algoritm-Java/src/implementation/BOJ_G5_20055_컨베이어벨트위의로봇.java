@@ -30,7 +30,6 @@ public class BOJ_G5_20055_컨베이어벨트위의로봇 {
 
         belt = new ArrayList<>();
 
-
         st = new StringTokenizer(br.readLine());
         for(int i=0;i<2*N;i++){
             belt.add(new Pos(Integer.parseInt(st.nextToken()), false));
