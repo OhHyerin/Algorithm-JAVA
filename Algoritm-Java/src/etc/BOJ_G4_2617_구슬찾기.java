@@ -58,6 +58,14 @@ public class BOJ_G4_2617_구슬찾기 {
             heavy[b].add(a);
         }
 
+        /* heavy
+        1 2 5 4
+        2 4 3 4
+        3 4
+        4
+        5
+         */
+
 //        for(int i=1;i<=N;i++){
 //            for(int j=0;j<light[i].size();j++){
 ////                if(!light[i].contains(light[light[i].get(j)])){
@@ -73,6 +81,7 @@ public class BOJ_G4_2617_구슬찾기 {
         for(int i=1;i<=N;i++){
            cHeavy[i] = heavy[i].size();
            HashSet<Integer> temp = new HashSet<>();
+           //heavy.size만큼 for문 돌려보기
            for(Integer hash:heavy[i]){
 //               cHeavy[i]+=heavy[hash].size();
                Collections.addAll(temp, hash);
@@ -110,8 +119,8 @@ public class BOJ_G4_2617_구슬찾기 {
         int count = 0;
 
         for(int i=1;i<=N;i++){
-            if(cHeavy[i]>=mid) count++;
-            else if(cLight[i]>=mid) count++;
+            if(cHeavy[i]>=mid || cLight[i]>=mid) count++;
+//            else if(cLight[i]>=mid) count++;
         }
 
 
