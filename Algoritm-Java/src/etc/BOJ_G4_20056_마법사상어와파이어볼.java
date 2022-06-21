@@ -108,16 +108,11 @@ public class BOJ_G4_20056_마법사상어와파이어볼 {
                 if(map[i][j].size()==1){
                     //한개면 뒷 과정에서 합쳐질 수 있기 때문에 map[i][j]를 clear해줌
                     map[i][j].clear();
+                    continue;
                 }
-                if (map[i][j].size() < 2) {
+                if (map[i][j].size() == 0) {
                     continue;  //없으면 걍 패스
                 }
-//                else if(map[i][j].size()==1){
-//                    //한개면 뒷 과정에서 합쳐질 수 있기 때문에
-//                    //map[i][j]를 clear해줌
-//                    map[i][j].clear();
-//                    continue;
-//                }
 
                 //여기부터 파이어볼이 2개
                 boolean isEven = map[i][j].get(0).d % 2 == 0;  //모두 짝수인가?
