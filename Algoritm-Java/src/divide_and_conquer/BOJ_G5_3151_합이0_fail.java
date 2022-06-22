@@ -1,11 +1,11 @@
-package etc;
+package divide_and_conquer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class BOJ_G5_3151_합이0 {
+public class BOJ_G5_3151_합이0_fail {
     /*
     반례
     10
