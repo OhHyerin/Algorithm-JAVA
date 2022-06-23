@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -15,11 +14,6 @@ public class BOJ_G4_1953_ÆÀ¹èºÐ {
     static int[][] map;
     static int[] visited;
     static Queue<Integer> queue;
-    static List<Integer>[] list;
-    static List<Integer> blue;
-    static List<Integer> white;
-    static StringBuilder sb = new StringBuilder();
-    static int start;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
