@@ -18,7 +18,7 @@ public class BOJ_G5_21608_상어초등학교 {
 
     static int N;  //N*N의 자리
     static int M;  //학생 수
-    static Seat[][] seats;
+    static int[][] seats;
     static int[][] favorits;
     static int[] dr = {-1, 1, 0, 0};
     static int[] dc = {0, 0, -1, 1};
@@ -30,7 +30,7 @@ public class BOJ_G5_21608_상어초등학교 {
         N = Integer.parseInt(br.readLine());
         M = N*N;
 
-        seats = new Seat[N+1][N+1];
+        seats = new int[N+1][N+1];
         favorits = new int[N*N+1][5];
 
         for(int i=1;i<=M;i++){
@@ -48,58 +48,6 @@ public class BOJ_G5_21608_상어초등학교 {
             favorits[i][4] = f4;
         }
 
-        def();  //seats 배열 초기화
-
-        for(int i=1;i<=N;i++){
-            for(int j=1;j<=N;j++){
-                System.out.print(seats[i][j].empty+" ");
-            }
-            System.out.println();
-        }
-
-        //첫 번째 친구 자리 앉음
-        int first = 0;
-        int fr = 0;
-        int fc = 0;
-        for(int i=1;i<=N;i++){
-            for(int j=1;j<=N;j++){
-                if(first<seats[i][j].empty){
-                    first = seats[i][j].empty;
-                    fr = i;
-                    fc = j;
-                }
-            }
-        }
-
-        seats[fr][fc].who = favorits[1][0];
-        seats[fr][fc].empty = seats[fr][fc].empty-1;
-        for(int d=0;d<4;d++){
-            int nr = fr+dr[d];
-            int nc = fc+dc[d];
-            if(!isIn(nr, nc)) continue;
-            seats[nr][nc].empty = seats[nr][nc].empty-1;
-        }
-
-       /* for(int i=1;i<=N;i++){
-            for(int j=1;j<=N;j++){
-                System.out.print(seats[i][j].who+" ");
-            }
-            System.out.println();
-        }
-
-        for(int i=1;i<=N;i++){
-            for(int j=1;j<=N;j++){
-                System.out.print(seats[i][j].empty+" ");
-            }
-            System.out.println();
-        }*/
-
-        for(int i=2;i<=M;i++){
-            selectSeat(favorits[i][0]);
-        }
-
-
-
 
     }
 
@@ -116,49 +64,47 @@ public class BOJ_G5_21608_상어초등학교 {
         }
     }
 
-    private static int favoritCount(int r, int c){
+    private static int favoritCount(){
         int count = 0;
 
-        for(int d=0;d<4;d++){
-            int nr = r+dr[d];
-            int nc = c+dc[d];
+        for(int r=1;r<=N;r++){
+            for(int c=1;c<=N;c++){
+                int like = 0;
+                for(int d=0;d<4;d++){
+                    int nr = r+dr[d];
+                    int nc = c+dc[d];
 
-            if(!isIn(nr, nc)) continue;
-            for(int f=1;f<=4;f++){
-                if(seats[nr][nc].who==favorits[seats[r][c].who][f]){
-                    count++;
+                    if(!isIn(nr, nc)) continue;
+
                 }
             }
         }
+
         return count;
     }
 
-    private static int emptyCount(int r, int c){
+    private static int emptyCount(){
         int count = 0;
-
-        for(int d=0;d<4;d++){
-            int nr = r+dr[d];
-            int nc = c+dc[d];
-
-            if(!isIn(nr, nc)) continue;
-            if(seats[nr][nc]==null || seats[nr][nc].who==0){
-                count++;
-            }
-        }
-
-        return count;
-    }
-
-
-
-    private static void def(){
 
         for(int i=1;i<=N;i++){
             for(int j=1;j<=N;j++){
-                seats[i][j] = new Seat(0, emptyCount(i, j));
+                count = 0;
+                for(int d=0;d<4;d++){
+                    int nr = i+dr[d];
+                    int nc = j+dc[d];
+
+                    if(!isIn(nr, nc)) continue;
+                    if(seats[nr][nc]==0) count++;
+                }
+
             }
         }
+
+        return count;
     }
+
+
+
 
     private static boolean isIn(int r, int c){
         return r>0 && c>0 && r<=N && c<=N;
