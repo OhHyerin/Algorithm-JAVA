@@ -1,4 +1,4 @@
-package etc;
+package string;
 
 public class Programmers_모음사전 {
 

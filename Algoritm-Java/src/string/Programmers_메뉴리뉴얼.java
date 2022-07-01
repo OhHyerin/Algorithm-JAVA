@@ -1,4 +1,4 @@
-package etc;
+package string;
 
 public class Programmers_메뉴리뉴얼 {
 

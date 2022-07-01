@@ -1,4 +1,4 @@
-package etc;
+package data_structure;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,9 +10,9 @@ public class BOJ_G2_1781_컵라면 {
 
 
     static int N;
-    static int maxDay = Integer.MIN_VALUE;
+//    static int maxDay = Integer.MIN_VALUE;
     static Queue<Quest> queue;
-    static int[] days;
+//    static int[] days;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,31 +29,25 @@ public class BOJ_G2_1781_컵라면 {
             int r = Integer.parseInt(st.nextToken());
 
             queue.add(new Quest(n, d, r));
-            maxDay = Math.max(maxDay, d);
+//            maxDay = Math.max(maxDay, d);
         }
 
-        days = new int[maxDay+1];  //데드라인의 가장 큰 day까지 days 배열 생성
-
-        int sum = 0;
+        Queue<Integer> pq = new PriorityQueue<>();
 
         while(!queue.isEmpty()){
             Quest cur = queue.poll();
-
-            if(days[cur.dead]!=0){
-                //이미 해당 날에 문제가 차있으면
-                for(int i= cur.dead;i>0;i--){
-                    if(days[i]==0){
-                        days[i] = cur.num;
-                        sum += cur.ramen;
-                    }
-                }
-            }else{
-                days[cur.dead] = cur.num;
-                sum += cur.ramen;
+            pq.add(cur.ramen);
+            while(pq.size()>cur.dead){
+                pq.poll();
             }
-
-
         }
+
+        int sum = 0;
+
+        while(!pq.isEmpty()){
+            sum += pq.poll();
+        }
+
 
 
         System.out.println(sum);
@@ -75,7 +69,21 @@ public class BOJ_G2_1781_컵라면 {
 
         @Override
         public int compareTo(Quest o) {
-            return (ramen-o.ramen)*-1; //컵라면 많은 순으로 내림차순
+            if(dead==o.dead){
+                return (ramen-o.ramen)*-1; //컵라면 많은 순으로 내림차순
+            }else{
+                return dead-o.dead;  //데드라인 짧은 순으로
+            }
+        }
+
+
+        @Override
+        public String toString() {
+            return "Quest{" +
+                    "num=" + num +
+                    ", dead=" + dead +
+                    ", ramen=" + ramen +
+                    '}';
         }
     }
 

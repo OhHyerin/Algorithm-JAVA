@@ -1,4 +1,4 @@
-package etc;
+package shortest_path;
 
 import java.io.BufferedReader;
 import java.io.IOException;
