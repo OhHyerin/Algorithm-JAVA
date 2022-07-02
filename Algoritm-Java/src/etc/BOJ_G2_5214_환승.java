@@ -19,7 +19,7 @@ public class BOJ_G2_5214_환승 {
     static int M;  //하이퍼튜브의 개수
     static List<Integer>[] list;
     static Tube[] tube;
-    static int answer;
+    static int answer = -1;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -53,12 +53,56 @@ public class BOJ_G2_5214_환승 {
 
         bfs();
 
+        System.out.println(answer);
+
 
 
     }
 
     private static void bfs(){
         Queue<Tube> queue = new LinkedList<>();
+        int[] visitTube = new int[tube.length];  //tube 방문체크
+        boolean[] visitStation = new boolean[N+1]; //역 방문 체크
+
+        //1번 station이 포함된 튜브들을 큐에 담기
+        for(int i=0;i<tube.length;i++) {
+            if (tube[i].stations.contains(1)) {
+                //tube가 연결되어있는 역 중 i가 있다면
+                queue.add(tube[i]); //해당 튜브로 연결
+                visitTube[i] = 1;  //튜브 방문처리
+            }
+        }
+        visitStation[1] = true;  //역 방문처리
+
+        while(!queue.isEmpty()){
+            Tube cur = queue.poll();
+
+            for(int station : cur.stations){  //현재 튜브가 연결되어있는 모든 station을 탐색
+                if(visitStation[station]){  //이미 방문했던 역이면 continue
+                    continue;
+                }
+
+                visitStation[station] = true;
+
+                if(station == N){
+                    //목적지와 연결되어있으면
+                    queue.clear();
+                    answer = visitTube[cur.idx]+1;  //현재 방문횟수 + 1 반환
+                }
+
+                //해당 역과 연결된 하이퍼튜브 확인하여 방문되지 않았으면 큐에 넣기
+                for(int i=0;i<list[station].size();i++){
+                    int next = list[station].get(i);
+                    if(visitTube[next]==0){
+                        queue.add(tube[next]);
+                        visitTube[next] = visitTube[cur.idx]+1;
+                    }
+                }
+
+            }
+        }
+
+
 
 
     }
