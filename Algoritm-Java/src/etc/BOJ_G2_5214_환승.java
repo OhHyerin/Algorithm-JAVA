@@ -55,8 +55,6 @@ public class BOJ_G2_5214_È¯½Â {
 
         System.out.println(answer);
 
-
-
     }
 
     private static void bfs(){
