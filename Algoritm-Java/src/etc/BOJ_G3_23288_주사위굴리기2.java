@@ -23,6 +23,7 @@ public class BOJ_G3_23288_주사위굴리기2 {
     static int[][] map;
     static int[] dr = {-1, 0, 1, 0};  //북->동->남->서
     static int[] dc = {0, 1, 0, -1};
+    static int[] dice = {1, 6, 3, 4, 2, 5};  //앞면 -> 반대면 (인덱스가 짝수면+1, 홀수면-1)
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
