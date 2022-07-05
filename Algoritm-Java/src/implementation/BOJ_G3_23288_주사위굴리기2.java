@@ -1,4 +1,4 @@
-package etc;
+package implementation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,13 +47,6 @@ public class BOJ_G3_23288_주사위굴리기2 {
             }
         }
 
-//        rotateRight();
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                System.out.print(dice[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
         //----------------입력완료--------------------------
         curDir = 1;
         curR = 1;
