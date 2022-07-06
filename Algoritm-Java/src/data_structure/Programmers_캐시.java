@@ -15,6 +15,11 @@ public class Programmers_캐시 {
     public static void main(String[] args) {
         int cacheSize = 3;
         String[] cities = {"Jeju", "Pangyo", "Seoul", "NewYork", "LA", "Jeju", "Pangyo", "Seoul", "NewYork", "LA"};
+//        String[] cities = {"Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul"};
+//        String[] cities = {"Jeju", "Pangyo", "Seoul", "NewYork", "LA", "SanFrancisco", "Seoul", "Rome", "Paris", "Jeju", "NewYork", "Rome"};
+//        String[] cities = {"Jeju", "Pangyo", "Seoul", "NewYork", "LA", "SanFrancisco", "Seoul", "Rome", "Paris", "Jeju", "NewYork", "Rome"};
+//        String[] cities = {"Jeju", "Pangyo", "NewYork", "newyork"};
+//        String[] cities = {"Jeju", "Pangyo", "Seoul", "NewYork", "LA"};
 
         System.out.println(solution(cacheSize, cities));
     }
@@ -30,6 +35,7 @@ public class Programmers_캐시 {
         for(int i=0;i<cities.length;i++){
             String city = cities[i].toUpperCase(); //대소문자 구분 안하므로 모두 대문자로 변경
 
+            //17번 테케
             if(cacheSize==0){  //캐시사이즈가 이미 0이면
                 time += 5;  //cache miss이므로 실행시간 5를 더하고
                 continue;  //continue;
@@ -40,7 +46,7 @@ public class Programmers_캐시 {
                 cache.put(city, 0);  //시간을 0으로 초기화해준 후 넣어줌 (어짜피 중복 제거 되니까!)
             }else{
                 time += 5; //cache miss일 경우 실행시간은 5이다.
-                if(cache.size() >= cacheSize){  //cacheSize만큼 cache에 모두 들어있으면
+                if(cache.size() == cacheSize){  //cacheSize만큼 cache에 모두 들어있으면
                     //가장 오래된 검색어 지우고 새로 넣어줌
                     int old = 0;
                     String oldKey = "";

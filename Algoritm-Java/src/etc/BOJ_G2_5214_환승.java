@@ -14,6 +14,14 @@ public class BOJ_G2_5214_환승 {
     1번역에서 N번역으로 가는데 방문하는 최소 역의 수는 몇 개일까?
      */
 
+    /*
+    반례
+    1 1 1
+    1
+     */
+
+    //역 -> 하이퍼튜브 -> 방문안한 역 -> 방문안한 하이퍼튜브 -> N
+
     static int N;  //역의 수
     static int K;  //한 하이퍼튜브가 서로 연결하는 역의 개수
     static int M;  //하이퍼튜브의 개수
@@ -75,6 +83,8 @@ public class BOJ_G2_5214_환승 {
         while(!queue.isEmpty()){
             Tube cur = queue.poll();
 
+            System.out.println(Arrays.toString(visitTube));
+
             for(int station : cur.stations){  //현재 튜브가 연결되어있는 모든 station을 탐색
                 if(visitStation[station]){  //이미 방문했던 역이면 continue
                     continue;
@@ -99,9 +109,6 @@ public class BOJ_G2_5214_환승 {
 
             }
         }
-
-
-
 
     }
 

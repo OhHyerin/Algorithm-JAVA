@@ -27,6 +27,12 @@ public class BOJ_G3_23288_주사위굴리기2 {
     static int[] dc = {0, 1, 0, -1};
     //앞면 : dice[1][1], 뒷면 : dice[3][1];
     static int[][] dice = {{0, 2, 0}, {4, 1, 3}, {0, 5, 0}, {0, 6, 0}};  //4*3의 전개도 모양
+    /*
+    0 2 0
+    4 1 3
+    0 5 0
+    0 6 0
+     */
     static int curDir, curR, curC;  //초기 방향과 위치
     static int result;
 
@@ -77,7 +83,7 @@ public class BOJ_G3_23288_주사위굴리기2 {
         curR = nr;
         curC = nc;
 
-        //bfs 사용해서 점수 획득
+        //bfs 사용해서 그 자리에서 얻을 수 있는 점수 획득
         result += getScores();
 
         //다음 갈 방향과 위치 설정

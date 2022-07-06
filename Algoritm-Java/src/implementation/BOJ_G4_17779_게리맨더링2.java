@@ -13,7 +13,6 @@ public class BOJ_G4_17779_게리맨더링2 {
     문제 설명
     - 구역을 5개의 선거구로 나눠야 하고, 각 구역은 다섯 선거구 중 하나에 포함되어야 한다.
     - 선거구는 구역을 적어도 하나 포함해야 하고, 한 선거구에 포함되어 있는 구역은 모두 연결되어 있어야 한다.
-
      */
 
     static int N;
@@ -28,8 +27,8 @@ public class BOJ_G4_17779_게리맨더링2 {
 
         N = Integer.parseInt(br.readLine());
 
-        pop = new int[N][N];
-        map = new int[N][N];
+        pop = new int[N][N];  //인구수
+        map = new int[N][N];  //구역
         pops = new int[6];
 
         for (int i = 0; i < N; i++) {
