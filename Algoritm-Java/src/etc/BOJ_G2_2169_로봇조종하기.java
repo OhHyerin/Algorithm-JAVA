@@ -10,10 +10,18 @@ import java.util.StringTokenizer;
 public class BOJ_G2_2169_로봇조종하기 {
     //dp
 
+    /*
+    문제 조건
+    - 북쪽 탐사 불가능 (동, 서, 남 방향만 가능)
+    - 한 번 탐사한 곳 재탐사 불가능
+    - 끝까지 도달했을 경우 가치 합이 최대
+    (최단 거리라는 말 없음!)
+     */
+
     static int R, C;
     static int[][] map;
-    static int[] dr = {-1, 1, 0, 0};
-    static int[] dc = {0, 0, -1, 1};
+    static int[] dr = {1, 0, 0};
+    static int[] dc = {0, -1, 1};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -39,15 +47,31 @@ public class BOJ_G2_2169_로봇조종하기 {
 
     private static void bfs(){
         Queue<Pos> queue = new LinkedList<>();
-        boolean[][] visited = new boolean[R+1][C+1];
+        int[][][] dp = new int[R+1][C+1][];
+        /*
+        dp[][][0] : 위에서 아래로
+        dp[][][1] : 왼쪽에서 오른쪽으로
+        dp[][][2] : 오른쪽에서 왼쪽으로
+         */
 
         queue.add(new Pos(1, 1, map[1][1]));
-        visited[1][1] = true;
+        for(int i=1;i<=C;i++){
+            dp[1][i][0] = map[1][i];
+            if(i==1) continue;
+            dp[1][i][1] = map[1][i-1]+map[1][i];
+        }
+        dp[1][1][1] = map[1][1];
+        dp[1][1][2] = map[1][1];
 
         while(!queue.isEmpty()){
             Pos cur = queue.poll();
 
-            for(int d=0;d<4;d++){
+            for(int d=0;d<3;d++){
+                int nr = cur.r+dr[d];
+                int nc = cur.c+dc[d];
+
+                if(!isIn(nr, nc)) continue;
+
 
             }
 
