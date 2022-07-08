@@ -71,7 +71,9 @@ public class BOJ_G2_2169_로봇조종하기 {
                 int nc = cur.c+dc[d];
 
                 if(!isIn(nr, nc)) continue;
-
+                if(d==0 && dp[nr][nc][0]!=0){
+                    dp[nr][nc][0] = dp[cur.r][cur.c][0] + map[nr][nc];
+                }
 
             }
 
