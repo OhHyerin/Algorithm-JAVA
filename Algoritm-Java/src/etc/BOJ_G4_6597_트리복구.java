@@ -14,6 +14,8 @@ public class BOJ_G4_6597_트리복구 {
     전위순회(pre) : D B A C E G F
     중위순회(in)  : A B C D E F G
 
+    BAC D EGF
+
      */
 
     static char[] preorder;
@@ -24,7 +26,6 @@ public class BOJ_G4_6597_트리복구 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        String input;
         while(true){
             String str = br.readLine();
             if(str==null) break;
@@ -55,6 +56,7 @@ public class BOJ_G4_6597_트리복구 {
         for(int i = start; i<end ; i++){
             //start부터 end까지 검사
             if(preorder[root]==inorder[i]){
+                //inorder에서 parent노드를 만나면 그 기점으로 왼쪽 오른쪽 나눔
                 makePostorder(root+1, start, i);
                 makePostorder(root+i-start+1, i+1, end);
                 sb.append(preorder[root]);
