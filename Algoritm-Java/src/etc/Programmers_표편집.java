@@ -1,5 +1,8 @@
 package etc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Programmers_표편집 {
     //2021 카카오 채용
 
@@ -11,9 +14,10 @@ public class Programmers_표편집 {
     "Z" : 가장 최근에 삭제된 행을 원래대로 복구합니다. 단, 현재 선택된 행은 바뀌지 않습니다.
      */
 
+
     public static void main(String[] args) {
-        int n = 8;
-        int k = 2;
+        int n = 8;  //행 개수를 나타내는 정수
+        int k = 2;  //처음에 선택된 행의 위치
         String[] cmd = {"D 2","C","U 3","C","D 4","C","U 2","Z","Z"};
 
         System.out.println(solution(n, k, cmd));
@@ -23,10 +27,33 @@ public class Programmers_표편집 {
     static public String solution(int n, int k, String[] cmd){
         String answer = "";
 
+        List<Row> rows = new ArrayList<>();
+        for(int i=1;i<=n;i++){
+            rows.add(new Row(i, true));
+        }
+
+
+
+
 
 
 
         return answer;
+    }
+
+    static class Row implements Comparable<Row>{
+        int idx;
+        boolean exist;
+
+        public Row(int idx, boolean exist) {
+            this.idx = idx;
+            this.exist = exist;
+        }
+
+        @Override
+        public int compareTo(Row o) {
+            return idx-o.idx;
+        }
     }
 
 
