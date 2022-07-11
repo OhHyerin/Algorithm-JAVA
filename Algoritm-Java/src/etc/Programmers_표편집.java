@@ -28,11 +28,9 @@ public class Programmers_Ç¥ÆíÁý {
         String answer = "";
 
         List<Row> rows = new ArrayList<>();
-        for(int i=1;i<=n;i++){
+        for(int i=1;i<=n;i++) {
             rows.add(new Row(i, true));
         }
-
-
 
 
 
