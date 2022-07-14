@@ -1,4 +1,4 @@
-package etc;
+package implementation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,8 +23,8 @@ public class BOJ_G5_2174_로봇시뮬레이션 {
     static int N, M;  // N : 로봇개수, M : 명령개수
     static int[] dr = {-1, 0, 1, 0};  //북동남서
     static int[] dc = {0, 1, 0, -1};
-    static List<Robot> robots;
-    static Queue<Quest> quests;
+    static List<Robot> robots;  //robot정보 담은 list
+    static Queue<Quest> quests;  //quest정보 담은 queue
     static int[][] map;
 //    static String result = "OK";
     static Queue<String> result;
