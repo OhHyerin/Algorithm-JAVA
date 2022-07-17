@@ -38,38 +38,25 @@ public class Programmers_파일명정렬 {
         String tail ="";
 
         public File(String tmp) {
-            int idx = 0;
-            String h = "";
+            int startIdx = 0;
+            int endIdx = 0;
+            boolean isNum = false;
+
             for(int i=0;i<tmp.length();i++){
                 char temp = tmp.charAt(i);
-                if(temp>='0' && temp<='9') {
-                    idx = i;
-                    break; //숫자나오면 멈춤
+
+                if(!isNum && temp>='0' && temp<='9'){
+                    startIdx = i;
+                    isNum = true;
                 }
-                h += temp;
-            }
-
-            this.head = h.toUpperCase();
-
-            String n = "";
-            for(int i=idx;i<tmp.length();i++){
-                char temp = tmp.charAt(i);
-                if(temp<'0' && temp>'9'){
-                    idx = i;  //숫자 끝나면 멈춤
-                    break;
+                if(isNum && (temp<'0' || temp>'9')){
+                    endIdx = i;
                 }
-                n += temp;
             }
 
-            this.number = n;
-
-            String t = "";
-            for(int i=idx;i<tmp.length();i++){
-                char temp = tmp.charAt(i);
-                t += temp;
-            }
-
-            this.tail = t;
+            this.head = tmp.substring(0, startIdx).toUpperCase();
+            this.number = tmp.substring(startIdx, endIdx);
+            this.tail = tmp.substring(endIdx, tmp.length());
 
         }
 
