@@ -58,9 +58,13 @@ public class Programmers_파일명정렬 {
                 }
             }
 
+            if(endIdx==0){
+                endIdx = tmp.length();
+            }
+
             this.head = tmp.substring(0, startIdx).toUpperCase();
             this.number = tmp.substring(startIdx, endIdx);
-            this.tail = tmp.substring(endIdx, tmp.length());
+            this.tail = tmp.substring(endIdx, tmp.length()+1);
 //            System.out.println("number : "+this.number);
 
             this.result = tmp;

@@ -1,4 +1,4 @@
-package etc;
+package graphtraversal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class BOJ_G4_3055_≈ª√‚ {
 
         water = new LinkedList<>();
         queue = new LinkedList<>();
-        Pos S = null;
+//        Pos S = null;
 
         for (int i = 0; i < R; i++) {
             String str = br.readLine();
@@ -79,10 +79,14 @@ public class BOJ_G4_3055_≈ª√‚ {
                     int nwc = w.c + dc[dir];
 
                     if (!isIn(nwr, nwc)) continue;
+//                    if (map[nwr][nwc] == '.' || map[nwr][nwc]=='S') { //∫Û∞¯∞£¿Ã∏È
                     if (map[nwr][nwc] == '.') { //∫Û∞¯∞£¿Ã∏È
                         map[nwr][nwc] = '*';
                         water.add(new Pos(nwr, nwc, 0));
                     }
+//                    if(map[nwr][nwc]=='S'){
+//
+//                    }
                 }
             }
 
@@ -112,6 +116,7 @@ public class BOJ_G4_3055_≈ª√‚ {
                             map[nr][nc] = 'S';
                         }
                         queue.add(new Pos(nr, nc, cur.cnt + 1));
+                        visited[nr][nc] = true;
                     }
 
 
@@ -120,6 +125,10 @@ public class BOJ_G4_3055_≈ª√‚ {
 
 
             }
+
+//            for(int i=0;i<R;i++){
+//                System.out.println(Arrays.toString(map[i]));
+//            }
 
         }
 
