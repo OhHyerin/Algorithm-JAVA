@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_G3_2528_사다리 {
+    //구현
 
     /*
     방향
