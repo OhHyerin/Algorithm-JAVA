@@ -25,7 +25,7 @@ public class BOJ_G3_1132_гу {
             int extra = 1;
             for(int j=str.length()-1;j>=0;j--){
                 char c = str.charAt(j);
-                alpha[c-'A'] = extra*10;
+                alpha[c-'A'] = extra*10;  //pow ╩Г©К
                 extra *= 10;
             }
         }
