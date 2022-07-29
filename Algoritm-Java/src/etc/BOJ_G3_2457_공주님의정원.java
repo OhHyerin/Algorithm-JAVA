@@ -35,6 +35,7 @@ public class BOJ_G3_2457_공주님의정원 {
 
         Collections.sort(flowers);
 
+
 //        System.out.println(flowers);
 
         int cnt = 0;  //꽃 몇 개 인지
@@ -61,6 +62,7 @@ public class BOJ_G3_2457_공주님의정원 {
                 cnt++;  //꽃의 개수 ++
             }else break;
         }
+
 
 //        List<Flower> temp = new ArrayList<>();
 //        for(int i=0;i<flowers.size();i++){

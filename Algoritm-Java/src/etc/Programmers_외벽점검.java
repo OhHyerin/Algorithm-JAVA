@@ -38,7 +38,9 @@ public class Programmers_외벽점검 {
             System.out.println();
         }
 
-        permutation(dist, 0, new boolean[dist.length], new int[dist.length]);
+        for(int i=0;i<weak.length;i++){
+            permutation(dist, 0, new boolean[dist.length], new int[dist.length], newWeak[i]);
+        }
 
 
 
@@ -46,7 +48,7 @@ public class Programmers_외벽점검 {
         return answer;
     }
 
-    static private void permutation(int[] dist, int cnt, boolean[] isSelected, int[] selected){
+    static private void permutation(int[] dist, int cnt, boolean[] isSelected, int[] selected, int[] weak){
         if(cnt==dist.length){
             System.out.println(Arrays.toString(selected));
             return;
@@ -56,7 +58,7 @@ public class Programmers_외벽점검 {
 
             isSelected[i] = true;
             selected[cnt] = dist[i];
-            permutation(dist, cnt+1, isSelected, selected);
+            permutation(dist, cnt+1, isSelected, selected, weak);
             isSelected[i] =false;
         }
 
