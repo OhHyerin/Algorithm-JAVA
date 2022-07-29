@@ -1,10 +1,11 @@
-package etc;
+package implementation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Programmers_프렌즈4블록 {
     //2018 카카오 블라인드
+    //구현
 
     public static void main(String[] args) {
         String[] board = {"CCBDE", "AAADE", "AAABF", "CCBBF"};
