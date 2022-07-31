@@ -13,8 +13,6 @@ public class BOJ_G2_21609_상어중학교 {
     무지개 블록 : 0
     일반 블록 : 색상 M가지
 
-    |r1-r2| + |c1-c2| = 1 : 인접하다
-
      */
 
     static int R, C;
