@@ -48,6 +48,11 @@ public class BOJ_G2_21609_상어중학교 {
     }
 
     private static void findBlock(){
+        for(int i=0;i<R;i++){
+            for(int j=0;j<C;j++){
+
+            }
+        }
 
     }
 
