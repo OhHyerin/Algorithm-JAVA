@@ -36,9 +36,9 @@ public class BOJ_G2_21609_상어중학교 {
             }
         }
 
-//        print();
-//        rotate();  //90도 반시계방향 회전
-//        print();
+        print();
+        rotate();  //90도 반시계방향 회전
+        print();
 
 //        while(true){
 //            findBlock();
