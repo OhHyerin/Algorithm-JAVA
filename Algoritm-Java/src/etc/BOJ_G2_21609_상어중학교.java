@@ -1,9 +1,11 @@
 package etc;
 
+import com.sun.org.apache.xpath.internal.compiler.PsuedoNames;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BOJ_G2_21609_상어중학교 {
     //구현
@@ -18,6 +20,11 @@ public class BOJ_G2_21609_상어중학교 {
     static int R, C;
     static int M; //색상의 개수
     static int[][] map;
+    static boolean[][] visited;
+    static int score;
+    static int[] dr = {-1, 1, 0, 0};
+    static int[] dc = {0, 0, -1, 1};
+    static List<Block> blockList;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,29 +34,120 @@ public class BOJ_G2_21609_상어중학교 {
         C = R;
         M = Integer.parseInt(st.nextToken());
 
-        map = new int[R+1][C+1];
+        map = new int[R][C];
+        visited = new boolean[R][C];
+        blockList = new ArrayList<>();
 
-        for(int i=1;i<=R;i++){
+        for(int i=0;i<R;i++){
             st = new StringTokenizer(br.readLine());
-            for(int j=1;j<=C;j++){
+            for(int j=0;j<C;j++){
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
-        print();
-        rotate();  //90도 반시계방향 회전
-        print();
+//        print();
+//        rotate();  //90도 반시계방향 회전
+//        print();
 
-//        while(true){
-//            findBlock();
-//            rotate();  //90
-//        }
+        while(true){
+            findBlock();
+            rotate();  //90
+
+            Collections.sort(blockList); //blocklist 우선 순위별로 정렬
+
+            Block b = blockList.get(0);  //블럭 중 하나에서 시작해서
+            score = b.size * b.size; //점수 계산
+            blockBfs(b.r, b.c, map[b.r][b.c]);  //블럭 지우기
+
+//            down();
+
+
+        }
 
     }
 
     private static void findBlock(){
         for(int i=0;i<R;i++){
             for(int j=0;j<C;j++){
+                if(!visited[i][j] && map[i][j]>0){  //방문한 적 없고 일반 블럭이면 bfs탐색
+                    bfs(i, j, map[i][j]);
+                }
+
+            }
+        }
+
+    }
+
+    private static void bfs(int r, int c, int block){
+        Queue<Pos> queue = new LinkedList<>();
+        boolean[][] bfsVisited = new boolean[R][C];
+
+        visited[r][c] = true;  //시작위치 visited true
+        bfsVisited[r][c] = true;  //bfs 탐색 visited true
+        queue.add(new Pos(r, c));
+
+        int size = 1;
+        int rbCnt = 0;
+
+        while(!queue.isEmpty()){
+            Pos cur = queue.poll();
+
+            for(int d=0;d<4;d++){
+                int nr = cur.r+dr[d];
+                int nc = cur.c+dc[d];
+
+                if(!isIn(nr, nc)) continue;
+                if(map[nr][nc]==-1) continue;
+                if(bfsVisited[nr][nc]) continue;
+
+                if(map[nr][nc]==0){
+                    //무지개 블럭이면
+                    rbCnt++;
+                    size++;
+                    bfsVisited[nr][nc] = true;
+                    queue.add(new Pos(nr, nc));
+                }else if (map[nr][nc]==block){
+                    size++;
+                    visited[nr][nc] = true;
+                    bfsVisited[nr][nc] = true;
+                    queue.add(new Pos(nr, nc));
+                }
+
+            }
+        }
+
+        if(size==1) return;  //사이즈 1이면 안넣음
+        else blockList.add(new Block(r, c, size, rbCnt));  //1보다 크면 블럭리스트에 추가
+
+
+    }
+
+    private static void blockBfs(int r, int c, int block){
+        Queue<Pos> queue = new LinkedList<>();
+
+        queue.add(new Pos(r, c));
+
+        map[r][c] = -2;  //지울것들 -2로
+        while(!queue.isEmpty()){
+            Pos cur = queue.poll();
+            for(int d=0;d<4;d++){
+                int nr = cur.r+dr[d];
+                int nc = cur.c+dc[d];
+
+                if(!isIn(nr, nc)) continue;
+                if(map[nr][nc]==0 || map[nr][nc]==block){
+                    map[nr][nc] = -2;
+                    queue.add(new Pos(nr, nc));
+                }
+            }
+        }
+
+
+    }
+
+    private static void down(){
+        for(int j=0;j<C;j++){
+            for(int i=R-1;i>=1;i--){
 
             }
         }
@@ -85,6 +183,23 @@ public class BOJ_G2_21609_상어중학교 {
         }
     }
 
+    static void rotation() {
+        int N = R;
+        int[][] rotate = new int[N][N];
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                rotate[i][j] = map[j][N - 1 - i];
+            }
+        }
+
+        map = rotate;
+    }
+
+    private static boolean isIn(int r, int c){
+        return r>=0 && c>=0 && r<R && c<C;
+    }
+
     private static void print(){
         for(int i=1;i<=R;i++){
             for(int j=1;j<=C;j++){
@@ -95,20 +210,42 @@ public class BOJ_G2_21609_상어중학교 {
         System.out.println();
     }
 
-    private static class Pos implements Comparable<Pos>{
+    private static class Block implements Comparable<Block>{
         int r;
         int c;
         int size;
+        int rbCnt;
 
-        public Pos(int r, int c, int size) {
+        public Block(int r, int c, int size, int rbCnt) {
             this.r = r;
             this.c = c;
             this.size = size;
+            this.rbCnt = rbCnt;
         }
 
         @Override
-        public int compareTo(Pos o) {
-            return 0;
+        public int compareTo(Block o) {
+            if(this.size==o.size){
+                if(this.rbCnt==o.rbCnt){
+                    if(this.r==o.r){
+                        return (this.c-o.c)*-1;
+                    }
+                    return (this.r-o.r)*-1;
+                }
+                return (this.rbCnt-o.rbCnt)*-1;
+            }
+            return (this.size-o.size)*-1;
+
+        }
+    }
+
+    public static class Pos{
+        int r;
+        int c;
+
+        public Pos(int r, int c) {
+            this.r = r;
+            this.c = c;
         }
     }
 }
