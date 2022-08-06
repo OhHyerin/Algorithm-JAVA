@@ -13,7 +13,7 @@ public class BOJ_G3_13418_학교탐방하기 {
 
     static int N; //건물의 개수
     static int M; //도로의 개수
-    static List<Pos> list;
+    static List<Pos> list;  //인접리스트
     static int[] root;
     static int min, max;
 
@@ -53,7 +53,7 @@ public class BOJ_G3_13418_학교탐방하기 {
             if(find(pos.from) != find(pos.to)){
                 union(pos.from, pos.to);
 
-                if(pos.weight==0){
+                if(pos.weight==0){  //오르막길 개수
                     min++;
                 }
             }

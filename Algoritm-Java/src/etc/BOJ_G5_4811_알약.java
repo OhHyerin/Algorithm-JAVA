@@ -28,14 +28,14 @@ public class BOJ_G5_4811_알약 {
     public static long pill(int hole, int half){
         if(hole==0){
             //전체 알약 개수가 0개면
-            return 1;
+            return 1;  //끝
         }
         if(dp[hole][half]>0){
             //알약이 아직 남아있으면
             return dp[hole][half];
         }
         dp[hole][half] = pill(hole-1, half+1);  //전체 하나 꺼내서 반은 다시 넣음
-        if(half>0){
+        if(half>0){  //반개짜리가 남아있으면
             dp[hole][half] += pill(hole, half-1);  //반개꺼내기
         }
         return dp[hole][half];
