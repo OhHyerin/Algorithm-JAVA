@@ -43,8 +43,8 @@ public class BOJ_G4_1915_가장큰정사각형 {
 
                 //지금까지 만들어진 변의 크기 중 가장 큰 값 갱신
                 max = Math.max(max, map[i][j]);
-//                System.out.println("i : "+(i-1)+"  j : "+(j-1));
-//                print();
+                System.out.println("i : "+(i-1)+"  j : "+(j-1));
+                print();
             }
         }
 

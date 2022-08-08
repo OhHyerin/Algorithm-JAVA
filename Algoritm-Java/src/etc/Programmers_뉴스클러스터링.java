@@ -15,6 +15,7 @@ public class Programmers_뉴스클러스터링 {
         System.out.println(solution("handshake", "shake hands"));
         System.out.println(solution("aa1+aa2", "AAAA12"));
         System.out.println(solution("E=M*C^2", "e=m*c^2"));
+        System.out.println(solution("A+C", "DEF"));
     }
 
     static public int solution(String str1, String str2){
@@ -66,7 +67,7 @@ public class Programmers_뉴스클러스터링 {
             if(hashMap2.containsKey(key)){
                 min += Math.min(hashMap2.get(key), value);
             }
-            max += value;
+            max += Math.max(value, hashMap2.get(key));  //max(3, 5)
         }
 
         it = hashMap2.entrySet().iterator();
@@ -82,7 +83,7 @@ public class Programmers_뉴스클러스터링 {
 //        System.out.println(max);
 
         if(min==0 && max==0) return 65536;
-        if(min==0 && max!=0) min = 1;
+        if(min==0 && max!=0) min = 0;  //<- 사실 필요 X
 
 
 
