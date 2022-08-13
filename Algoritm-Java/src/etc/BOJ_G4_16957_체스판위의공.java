@@ -76,9 +76,7 @@ public class BOJ_G4_16957_체스판위의공 {
 //            if(find(dotA) != find(dotB)){
 //                union(dotA, dotB);
 //            }
-            int min = Math.min(find(dotA), find(dotB));
-            root[dotA] = min;
-            root[dotB] = min;
+            union(dotA, dotB);
         }
 
         System.out.println(Arrays.toString(root));
