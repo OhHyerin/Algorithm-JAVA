@@ -18,9 +18,6 @@ public class BOJ_G5_2212_¼¾¼­ {
         N = Integer.parseInt(br.readLine());
         K = Integer.parseInt(br.readLine());
 
-        for(int i=0;i<N;i++){
-
-        }
 
 
     }
