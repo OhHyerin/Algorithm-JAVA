@@ -1,4 +1,4 @@
-package etc;
+package brute_force;
 
 import java.util.*;
 
