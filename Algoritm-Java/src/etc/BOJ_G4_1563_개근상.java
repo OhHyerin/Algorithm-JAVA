@@ -28,9 +28,9 @@ public class BOJ_G4_1563_개근상 {
     }
 
     private static long attended(int total, int late, int unattended){
+        long sum = 0;
         if(total==N) return 1;  //N일 다 정해졌으면 한 가지 경우 더함
 
-        long sum = 0;
 
 
 
