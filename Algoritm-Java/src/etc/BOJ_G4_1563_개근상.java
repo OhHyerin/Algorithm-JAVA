@@ -25,6 +25,8 @@ public class BOJ_G4_1563_°³±Ù»ó {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
+        long answer = attended(0, 0, 0);
+        System.out.println(answer);
     }
 
     private static long attended(int total, int late, int unattended){
