@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class BOJ_G5_3980_선발명단 {
 
     static int[][] power;
+    static int max = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,12 +27,9 @@ public class BOJ_G5_3980_선발명단 {
                 }
             }
 
+            max = Integer.MIN_VALUE;
 
-
-
-
-
-
+            permutation(0, new int[11], new boolean[11]);
 
         }  //t
 
@@ -39,14 +37,19 @@ public class BOJ_G5_3980_선발명단 {
 
     private static void permutation(int cnt, int[] selected, boolean[] isSelected){
         if(cnt==11){
+            int sum = 0;
+            for(int i=0;i<selected.length;i++){
+                sum += selected[i];
+            }
 
-
+            max = Math.max(max, sum);
 
             return;
         }
 
         for(int i=1;i<=11;i++){
             if(isSelected[i]) continue;
+            if(power[cnt][i]==0) continue;
 
             selected[cnt] = i;
             isSelected[i] = true;
