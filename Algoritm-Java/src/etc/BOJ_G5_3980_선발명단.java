@@ -13,6 +13,7 @@ public class BOJ_G5_3980_선발명단 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
 
         int T = Integer.parseInt(br.readLine());
 
@@ -30,6 +31,9 @@ public class BOJ_G5_3980_선발명단 {
             max = Integer.MIN_VALUE;
 
             permutation(0, new int[11], new boolean[11]);
+            
+            sb.append(max).append("\n");
+
 
         }  //t
 
